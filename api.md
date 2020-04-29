@@ -22,7 +22,7 @@
 {
   "token": "averylongtoken34957345sfdghkl",
   "user": {
-    "id": "1000",
+    "code": "1000",
     "name": "username",
     "phone": "0100000000",
     "image": "https://via.placeholder.com/500?text=image+1",
@@ -31,13 +31,13 @@
     "committee": "web",
     "feedbacks": [
       {
-        "id": "2",
+        "_id": "2",
         "title": "feedback 1",
         "date": "26-4-2020",
         "body": "Fake feedback"
       },
       {
-        "id": "1",
+        "_id": "1",
         "title": "feedback 2",
         "date": "26-5-2020",
         "body": "Fake feedback"
@@ -45,13 +45,13 @@
     ],
     "achievements": [
       {
-        "id": "2",
+        "_id": "2",
         "title": "title 1",
         "date": "26-5-2020",
         "description": "Lorem ipsum"
       },
       {
-        "id": "1",
+        "_id": "1",
         "title": "title 2",
         "date": "26-5-2020",
         "description": "Lorem ipsum"
@@ -165,7 +165,7 @@
 ```json
 [
   {
-    "id": "1",
+    "_id": "1",
     "title": "Announcement 1",
     "body": "Fake data for announcement ",
     "date": "26-04-2020",
@@ -173,7 +173,7 @@
     "cover": "https://via.placeholder.com/500?text=image+1"
   },
   {
-    "id": "2",
+    "_id": "2",
     "title": "Announcement 2",
     "body": "Fake data for announcement ",
     "date": "26-04-2020",
