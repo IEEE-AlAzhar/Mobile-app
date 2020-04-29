@@ -1,10 +1,12 @@
 # API data
 
-### Login
 
-#### post Request
 
-**Request:** `/users/login`
+### LOGIN
+
+#### POST Request
+
+**Request:** `/user/login`
 
 ```json
 {
@@ -59,19 +61,21 @@
 }
 ```
 
-- **401:**
+- **404:**
 
 ```json
 {
-  "msg": "User not found, please try again with a valid code!"
+  "msg": "User does not exist!"
 }
 ```
 
-### change user image
 
-#### put Request
 
-**Request:** `/users/:id/image`
+### CHANGE USER IMAGE
+
+#### PUT Request
+
+**Request:** `/user/:code/image`
 
 ```json
 {
@@ -81,12 +85,20 @@
 
 **Response:**
 
+
 - **200:**
 
 ```json
 {
-  "msg": "Image updated successfully !",
   "image": "{updated image here}"
+}
+```
+
+- **404:**
+
+```json
+{
+  "msg": "User does not exist!"
 }
 ```
 
@@ -98,11 +110,13 @@
 }
 ```
 
-### change user phone
 
-#### put Request
 
-**Request:** `/users/:id/phone`
+### CHANGE USER PHONE
+
+#### PUT Request
+
+**Request:** `/user/:code/phone`
 
 ```json
 {
@@ -116,8 +130,15 @@
 
 ```json
 {
-  "msg": "Phone updated successfully !",
   "phone": "{updated phone here}"
+}
+```
+
+- **404:**
+
+```json
+{
+  "msg": "User does not exist!"
 }
 ```
 
@@ -129,9 +150,11 @@
 }
 ```
 
-### Get announcements
 
-#### get Request
+
+### GET ANNOUNCEMENTS
+
+#### GET Request
 
 **Request:** `/announcements`
 
