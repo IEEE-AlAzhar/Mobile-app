@@ -14,7 +14,7 @@ class _HomeScreenState extends State<HomeScreen> {
       length: 3,
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.indigo,
+          backgroundColor: Colors.lightBlue[900],
           leading: IconButton(
             onPressed: () {
               // SideDrawer
@@ -22,20 +22,19 @@ class _HomeScreenState extends State<HomeScreen> {
             icon: Icon(
               Icons.dehaze,
               color: Colors.white,
-              size: 30,
             ),
           ),
           title: Text(
             'IEEE  AZHAR',
             style:
-            TextStyle(color: Colors.white, fontSize: 27, letterSpacing: 1.7),
+                TextStyle(color: Colors.white, fontSize: 27, letterSpacing: 1),
           ),
           centerTitle: true,
           bottom: TabBar(
             labelPadding: const EdgeInsets.only(bottom: 11),
             labelColor: Colors.white,
             labelStyle: TextStyle(fontSize: 19),
-            unselectedLabelColor: Colors.grey[100],
+            unselectedLabelColor: Colors.grey[300],
             unselectedLabelStyle: TextStyle(fontSize: 17),
             indicatorColor: Colors.white,
             indicatorWeight: 3,
@@ -57,11 +56,11 @@ class _HomeScreenState extends State<HomeScreen> {
             HomeScreenContent(),
             Text(
               "Proffile",
-              style: TextStyle(color: Colors.indigo),
+              style: TextStyle(color: Colors.blueAccent),
             ),
             Text(
               "Setting",
-              style: TextStyle(color: Colors.indigo),
+              style: TextStyle(color: Colors.blueAccent),
             ),
           ],
         ),
