@@ -10,62 +10,27 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-      length: 3,
-      child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.indigo,
-          leading: IconButton(
-            onPressed: () {
-              // SideDrawer
-            },
-            icon: Icon(
-              Icons.dehaze,
-              color: Colors.white,
-              size: 30,
-            ),
-          ),
-          title: Text(
-            'IEEE  AZHAR',
-            style:
-            TextStyle(color: Colors.white, fontSize: 27, letterSpacing: 1.7),
-          ),
-          centerTitle: true,
-          bottom: TabBar(
-            labelPadding: const EdgeInsets.only(bottom: 11),
-            labelColor: Colors.white,
-            labelStyle: TextStyle(fontSize: 19),
-            unselectedLabelColor: Colors.grey[100],
-            unselectedLabelStyle: TextStyle(fontSize: 17),
-            indicatorColor: Colors.white,
-            indicatorWeight: 3,
-            tabs: <Widget>[
-              Text(
-                "Home",
-              ),
-              Text(
-                "Proffile",
-              ),
-              Text(
-                "Setting",
-              ),
-            ],
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.indigo,
+        leading: IconButton(
+          onPressed: () {
+            // SideDrawer
+          },
+          icon: Icon(
+            Icons.dehaze,
+            color: Colors.white,
+            size: 30,
           ),
         ),
-        body: TabBarView(
-          children: <Widget>[
-            HomeScreenContent(),
-            Text(
-              "Proffile",
-              style: TextStyle(color: Colors.indigo),
-            ),
-            Text(
-              "Setting",
-              style: TextStyle(color: Colors.indigo),
-            ),
-          ],
+        title: Text(
+          'IEEE  AZHAR',
+          style:
+          TextStyle(color: Colors.white, fontSize: 27, letterSpacing: 1.7),
         ),
-      ),
+        centerTitle: true,
+    ),
+      body: HomeScreenContent(),
     );
   }
 }
