@@ -1,13 +1,12 @@
-import 'dart:async';
-import 'package:flutter/cupertino.dart';
-import 'package:simple_animations/simple_animations.dart';
-import 'package:page_transition/page_transition.dart';
-import 'FadeAnimation.dart';
-import 'home_screen.dart';
-import 'package:flutter/material.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:ieeeapp/FadeAnimation.dart';
+import 'home_page.dart';
 
 class SplashScreen extends StatefulWidget {
+  static String id = "SplashScreen";
+
   @override
   State<StatefulWidget> createState() {
     return _SplashScreen();
