@@ -8,6 +8,7 @@
 
 **Request:** `/user/login`
 
+##### -body =>
 ```json
 {
   "code": "1000"
@@ -20,8 +21,10 @@
 
 ```json
 {
+  "auth": true,
   "token": "averylongtoken34957345sfdghkl",
-  "user": {
+  "userData": {
+    "_id": "5eb56c0f6848bf27800b2353",
     "code": "1000",
     "name": "username",
     "phone": "0100000000",
@@ -69,14 +72,31 @@
 }
 ```
 
+- **500:**
+
+```json
+{
+  "msg": "An error occurred, please try again later!",
+  "error": {"error here"},
+}
+```
+
 
 
 ### CHANGE USER IMAGE
 
 #### PUT Request
 
-**Request:** `/user/:code/image`
+**Request:** `/user/:_id/image`
 
+##### -Headers =>
+```json
+{
+  "x-access-token": "{user token here}"
+}
+```
+
+##### -Body =>
 ```json
 {
   "image": "{new image here}"
@@ -106,7 +126,8 @@
 
 ```json
 {
-  "msg": "An error occurred, please try again later!"
+  "msg": "An error occurred, please try again later!",
+  "error": {"error here"},  
 }
 ```
 
@@ -116,8 +137,16 @@
 
 #### PUT Request
 
-**Request:** `/user/:code/phone`
+**Request:** `/user/:_id/phone`
 
+##### -headers =>
+```json
+{
+  "x-access-token": "{user token here}"
+}
+```
+
+##### -body =>
 ```json
 {
   "phone": "{new phone here}"
@@ -146,7 +175,8 @@
 
 ```json
 {
-  "msg": "An error occurred, please try again later!"
+  "msg": "An error occurred, please try again later!",
+  "error": {"error here"},  
 }
 ```
 
@@ -157,6 +187,13 @@
 #### GET Request
 
 **Request:** `/announcements`
+
+##### -headers =>
+```json
+{
+  "x-access-token": "{user token here}"
+}
+```
 
 **Response:**
 
