@@ -4,7 +4,6 @@ import 'package:ieeeapp/screens/profile_page.dart';
 import 'package:ieeeapp/screens/settings_page.dart';
 import 'package:provider/provider.dart';
 
-
 // ignore: camel_case_types
 class NavigationDrawer extends StatefulWidget {
   @override
@@ -12,7 +11,7 @@ class NavigationDrawer extends StatefulWidget {
 }
 
 class _NavigationDrawerState extends State<NavigationDrawer> {
-  bool isDark =false;
+  bool isDark = false;
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +23,7 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
             Container(
               width: double.infinity,
               padding: EdgeInsets.all(20.0),
-              color: themeChange.darkTheme ? Colors.blueGrey: Colors.blue[300],
+              color: themeChange.darkTheme ? Colors.blueGrey : Colors.blue[300],
               child: Center(
                 child: Column(
                   children: <Widget>[
@@ -51,28 +50,29 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
                   fontSize: 18,
                 ),
               ),
-              onTap:(){Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context)=> ProfilePage()
-              ),);},
+              onTap: () {
+                Navigator.of(context).pushNamed(ProfilePage.id);
+              },
             ),
             Divider(
               height: 10.0,
             ),
             ListTile(
-              leading: Icon(Icons.brightness_6,),
+              leading: Icon(
+                Icons.brightness_6,
+              ),
               title: Text(
                 'Night mood',
                 style: TextStyle(
                   fontSize: 18,
                 ),
               ),
-              onTap:(){
+              onTap: () {
                 setState(() {
-                  isDark= !isDark;
+                  isDark = !isDark;
                 });
-                themeChange.darkTheme=isDark;
+                themeChange.darkTheme = isDark;
               },
-
             ),
             Divider(
               height: 10.0,
@@ -85,9 +85,9 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
                   fontSize: 18,
                 ),
               ),
-              onTap:(){Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context)=> SettingsScreen()
-              ),);},
+              onTap: () {
+                Navigator.of(context).pushNamed(SettingsScreen.id);
+              },
             ),
             Divider(
               height: 10.0,
@@ -100,7 +100,7 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
                   fontSize: 18,
                 ),
               ),
-              onTap:(){},
+              onTap: () {},
             ),
           ],
         ),
@@ -108,4 +108,3 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
     );
   }
 }
-
