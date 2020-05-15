@@ -2,6 +2,7 @@ import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ieeeapp/FadeAnimation.dart';
+import 'package:ieeeapp/models/themes.dart';
 import 'home_page.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -12,6 +13,7 @@ class SplashScreen extends StatefulWidget {
     return _SplashScreen();
   }
 }
+
 
 class _SplashScreen extends State<SplashScreen> with TickerProviderStateMixin {
   AnimationController _scaleController;
@@ -25,12 +27,17 @@ class _SplashScreen extends State<SplashScreen> with TickerProviderStateMixin {
   Animation<double> _positionAnimation;
 
   bool hideIcon = false;
+  DarkThemeProvider themeChangeProvider = new DarkThemeProvider();
+
+  void getCurrentAppTheme() async {
+    themeChangeProvider.darkTheme =
+    await themeChangeProvider.darkThemePreference.getTheme();
+  }
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
-
+    getCurrentAppTheme();
     _scaleController =
         AnimationController(vsync: this, duration: Duration(milliseconds: 300));
 

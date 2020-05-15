@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -68,23 +67,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Settings'),
-        backgroundColor: Colors.teal,
         centerTitle: true,
-        leading: Icon(
-          Icons.arrow_back,
-          color: Colors.white,
-          size: 25.0,
-        ),
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(
-              FontAwesomeIcons.moon,
-              color: Colors.white,
-              size: 25.0,
-            ),
-            onPressed: () {},
-          ),
-        ],
       ),
       body: ListView(
         children: <Widget>[
@@ -135,8 +118,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         _showChoiceDialog();
                       },
                       child: Icon(
-                        FontAwesomeIcons.camera,
-                        color: Colors.teal,
+                        Icons.photo_camera,
+                        color: Colors.blue[300],
                         size: 30.0,
                       ),
                     ),
@@ -181,7 +164,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10.0)),
                     onPressed: () {},
-                    color: Colors.teal,
                     child: Text(
                       'Save',
                       style: TextStyle(

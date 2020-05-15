@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:ieeeapp/models/themes.dart';
+import 'package:provider/provider.dart';
 
 class ProfilePage extends StatefulWidget {
   static String id = 'ProfilePage';
@@ -7,14 +9,18 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
+
   @override
   Widget build(BuildContext context) {
+    final themeChange = Provider.of<DarkThemeProvider>(context);
     return Scaffold(
-      appBar:AppBar(title: text('Technical', 15.0, Colors.white),elevation: 0.0,backgroundColor: Colors.blueAccent,),
+      appBar:AppBar(title: text('Technical', 15.0),elevation: 0.0,),
         body: Column(
           children: <Widget>[
             Container(
-              color: Colors.blueAccent,
+              decoration: BoxDecoration(
+                color: themeChange.darkTheme ? Colors.blueGrey : Colors.blue[100]
+              ),
               height: 350.0,
               width: double.infinity,
               child: Column(mainAxisAlignment:MainAxisAlignment.center,
@@ -24,9 +30,9 @@ class _ProfilePageState extends State<ProfilePage> {
                     radius: 70.0,
                   ),
                   Padding(padding: EdgeInsets.only(top: 10.0)),
-                  text('Nada Abduallah', 20.0, Colors.white),
+                  text('Nada Abduallah', 30.0),
                   Padding(padding: EdgeInsets.only(top: 10.0)),
-                  text('Mobile App | Member', 12.0, Colors.white),
+                  text('Mobile App | Member', 15.0),
                 ],
               ),
             ),
@@ -36,7 +42,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 children: <Widget>[
                   ListTile(
                     leading: Icon(Icons.business_center),
-                    title: text('Achivmentes', 20.0, Colors.black),
+                    title: text('Achievement', 20.0),
                     trailing: Icon(Icons.arrow_forward_ios),
                   ),
                   Divider(
@@ -44,7 +50,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   ),
                   ListTile(
                       leading: Icon(Icons.feedback),
-                      title: text('Feedback', 20.0, Colors.black),
+                      title: text('Feedback', 20.0),
                       trailing: Icon(Icons.arrow_forward_ios)),
                 ],
               ),
@@ -53,12 +59,12 @@ class _ProfilePageState extends State<ProfilePage> {
         ));
   }
 
-  Widget text(String text, double size, Color color) {
+  Widget text(String text, double size,) {
     return Text(
       '$text',
       style: TextStyle(
         fontSize: size,
-        color: color,
+        fontWeight: FontWeight.bold
       ),
     );
   }

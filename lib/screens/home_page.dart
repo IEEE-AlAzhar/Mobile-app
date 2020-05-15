@@ -1,5 +1,6 @@
  import 'package:flutter/material.dart';
 import'package:ieeeapp/widgets/cards.dart';
+import 'package:ieeeapp/widgets/navigation_drawer.dart';
 
 class HomeScreen extends StatefulWidget {
   static String id = "HomeScreen";
@@ -12,18 +13,8 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: NavigationDrawer(),
       appBar: AppBar(
-        backgroundColor: Colors.indigo,
-        leading: IconButton(
-          onPressed: () {
-            // SideDrawer
-          },
-          icon: Icon(
-            Icons.dehaze,
-            color: Colors.white,
-            size: 30,
-          ),
-        ),
         title: Text(
           'IEEE  AZHAR',
           style:

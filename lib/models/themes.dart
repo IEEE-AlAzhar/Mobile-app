@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:ieeeapp/utils/DarkThemePrefrences.dart';
 
-class ThemeChanger with ChangeNotifier {
-  ThemeData _themeData;
+class DarkThemeProvider with ChangeNotifier {
+  DarkThemePreference darkThemePreference = DarkThemePreference();
+  bool _darkTheme = false;
 
-  ThemeChanger(this._themeData);
+  bool get darkTheme => _darkTheme;
 
-  getTheme() => _themeData;
-  setTheme(ThemeData theme) {
-    _themeData = theme;
+  set darkTheme(bool value) {
+    _darkTheme = value;
+    darkThemePreference.setDarkTheme(value);
     notifyListeners();
   }
 }

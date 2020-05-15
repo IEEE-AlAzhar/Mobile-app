@@ -3,15 +3,30 @@ import 'package:ieeeapp/screens/home_page.dart';
 import 'package:ieeeapp/screens/profile_page.dart';
 import 'package:ieeeapp/screens/settings_page.dart';
 import 'package:ieeeapp/screens/splash_screen.dart';
+import 'package:ieeeapp/utils/dart_themes_styles.dart';
+import 'package:provider/provider.dart';
 
-void main() => runApp(MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: "IEEE AL-AZHAR SB APP",
-      initialRoute: ProfilePage.id,
-      routes: {
-        SplashScreen.id: (context) => SplashScreen(),
-        SettingsScreen.id: (context) => SettingsScreen(),
-        HomeScreen.id: (context) => HomeScreen(),
-        ProfilePage.id: (context) => ProfilePage(),
+import 'models/themes.dart';
+
+DarkThemeProvider themeChangeProvider = new DarkThemeProvider();
+
+void main() => runApp(ChangeNotifierProvider(
+      create: (context) {
+        return themeChangeProvider;
       },
+      child: Consumer<DarkThemeProvider>(
+          builder: (BuildContext context, value, Widget child) {
+        return MaterialApp(
+          debugShowCheckedModeBanner: false,
+          title: "IEEE AL-AZHAR SB APP",
+          theme: Styles.themeData(themeChangeProvider.darkTheme, context),
+          initialRoute: HomeScreen.id,
+          routes: {
+            SplashScreen.id: (context) => SplashScreen(),
+            SettingsScreen.id: (context) => SettingsScreen(),
+            HomeScreen.id: (context) => HomeScreen(),
+            ProfilePage.id: (context) => ProfilePage(),
+          },
+        );
+      }),
     ));

@@ -1,12 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:ieeeapp/models/themes.dart';
 import 'package:ieeeapp/screens/profile_page.dart';
 import 'package:ieeeapp/screens/settings_page.dart';
+import 'package:provider/provider.dart';
 
-var primary = Color(0xff0a111a);
+
 // ignore: camel_case_types
-class navigationDrawer extends StatelessWidget {
+class NavigationDrawer extends StatefulWidget {
+  @override
+  _NavigationDrawerState createState() => _NavigationDrawerState();
+}
+
+class _NavigationDrawerState extends State<NavigationDrawer> {
+  bool isDark =false;
+
   @override
   Widget build(BuildContext context) {
+    final themeChange = Provider.of<DarkThemeProvider>(context);
     return Drawer(
       child: SafeArea(
         child: Column(
@@ -14,7 +24,7 @@ class navigationDrawer extends StatelessWidget {
             Container(
               width: double.infinity,
               padding: EdgeInsets.all(20.0),
-              color: Colors.blue,
+              color: themeChange.darkTheme ? Colors.blueGrey: Colors.blue[300],
               child: Center(
                 child: Column(
                   children: <Widget>[
@@ -49,14 +59,20 @@ class navigationDrawer extends StatelessWidget {
               height: 10.0,
             ),
             ListTile(
-              leading: Icon(Icons.brightness_6),
+              leading: Icon(Icons.brightness_6,),
               title: Text(
                 'Night mood',
                 style: TextStyle(
                   fontSize: 18,
                 ),
               ),
-              onTap:(){},
+              onTap:(){
+                setState(() {
+                  isDark= !isDark;
+                });
+                themeChange.darkTheme=isDark;
+              },
+
             ),
             Divider(
               height: 10.0,
