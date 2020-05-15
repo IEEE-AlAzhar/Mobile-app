@@ -3,6 +3,7 @@ import 'package:ieeeapp/screens/settings_page.dart';
 import 'package:ieeeapp/screens/home_page.dart';
 import 'package:ieeeapp/screens/splash_screen.dart';
 import 'package:ieeeapp/screens/profile_page.dart';
+import 'package:ieeeapp/screens/login_page.dart';
 void main() => runApp(MaterialApp(
   title: "IEEE APP",
   initialRoute:  SettingsScreen.id  ,
