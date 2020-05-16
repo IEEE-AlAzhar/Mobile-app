@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:ieeeapp/screens/home_page.dart';
+import 'package:ieeeapp/utils/networking.dart';
+import 'home_page.dart';
+
+NetworkHelper nHelper = NetworkHelper();
 
 class LoginPage extends StatefulWidget {
   static String id = 'Loginpage';
@@ -8,6 +12,7 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  TextEditingController textEditingController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,6 +36,7 @@ class _LoginPageState extends State<LoginPage> {
                 height: 20.0,
               ),
               TextField(
+                controller: textEditingController,
                 obscureText: true,
                 autofocus: true,
                 decoration: InputDecoration(
@@ -38,21 +44,27 @@ class _LoginPageState extends State<LoginPage> {
                   labelText: 'your code',
                 ),
               ),
-              SizedBox(height: 10.0,),
+              SizedBox(
+                height: 10.0,
+              ),
               RaisedButton(
-                color: Colors.blueAccent,
-                onPressed: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context)=> HomeScreen()
-                  ),);
-
-                },
                 child: const Text(
-
                   'log in',
-                  style: TextStyle(fontSize: 20,fontWeight:FontWeight.bold,),
-
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
+                onPressed: () {
+                  nHelper.login(textEditingController.text).then((val) {
+                    if (val.statusCode == 200) {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) {
+                        return HomeScreen();
+                      }));
+                    }
+                  });
+                },
               ),
             ],
           ),
