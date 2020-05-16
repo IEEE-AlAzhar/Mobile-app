@@ -3,8 +3,15 @@ import 'package:ieeeapp/models/themes.dart';
 import 'package:ieeeapp/screens/profile_page.dart';
 import 'package:ieeeapp/screens/settings_page.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-// ignore: camel_case_types
+import '../screens/login_page.dart';
+import '../utils/networking.dart';
+import '../utils/shared_pref.dart';
+
+SharedPrefsHelper shared = SharedPrefsHelper();
+NetworkHelper net = NetworkHelper();
+
 class NavigationDrawer extends StatefulWidget {
   @override
   _NavigationDrawerState createState() => _NavigationDrawerState();
@@ -12,6 +19,27 @@ class NavigationDrawer extends StatefulWidget {
 
 class _NavigationDrawerState extends State<NavigationDrawer> {
   bool isDark = false;
+
+//  Future<String> readToken() async {
+//    final sharedPrefs = await SharedPreferences.getInstance();
+//    var key = 'token';
+//    final value = sharedPrefs.get(key)?? 0;
+//  if(value !='0'){
+//    Navigator.of(context).push(route)
+// }
+//  }
+  String token;
+  @override
+  void initState() {
+    var value;
+
+//    readToken();
+    shared.readToken().then((value) {
+      token = value;
+    });
+
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -100,7 +128,18 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
                   fontSize: 18,
                 ),
               ),
-              onTap: () {},
+              onTap: () {
+                net.logout(token).then((val) {
+                  if (val.statusCode == 200) {
+                    token = '0';
+                    shared.saveToken(token);
+                    Navigator.pushReplacement(context,
+                        MaterialPageRoute(builder: (context) {
+                      return LoginPage();
+                    }));
+                  }
+                });
+              },
             ),
           ],
         ),
