@@ -16,7 +16,9 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
+
+      body:
+      Container(
         margin: EdgeInsets.only(
           left: 20.0,
           right: 20.0,
@@ -58,10 +60,11 @@ class _LoginPageState extends State<LoginPage> {
                 onPressed: () {
                   nHelper.login(textEditingController.text).then((val) {
                     if (val.statusCode == 200) {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) {
-                        return HomeScreen();
-                      }));
+                      Navigator.of(context).pushNamed(HomeScreen.id);
+                    }
+                    else{
+                      final snackBar = SnackBar(content: Text('Wrong code'));
+                      Scaffold.of(context).showSnackBar(snackBar);
                     }
                   });
                 },
@@ -71,5 +74,9 @@ class _LoginPageState extends State<LoginPage> {
         ),
       ),
     );
+  }
+  void dispose() {
+    textEditingController.dispose();
+    super.dispose();
   }
 }
