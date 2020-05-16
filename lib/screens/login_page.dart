@@ -63,11 +63,12 @@ class _LoginPageState extends State<LoginPage> {
                       Navigator.of(context).pushNamed(HomeScreen.id);
                     }
                     else{
-                      final snackBar = SnackBar(content: Text('Wrong code'));
+                      final snackBar = SnackBar(content: Text('Incorrect code'));
                       Scaffold.of(context).showSnackBar(snackBar);
                     }
                   });
                 },
+
               ),
             ],
           ),
