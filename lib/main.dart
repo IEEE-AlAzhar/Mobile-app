@@ -25,7 +25,7 @@ void main() => runApp(ChangeNotifierProvider(
           debugShowCheckedModeBanner: false,
           title: "IEEE AL-AZHAR SB APP",
           theme: Styles.themeData(themeChangeProvider.darkTheme, context),
-          initialRoute: SplashScreen.id,
+          initialRoute: LoginPage.id,
           routes: {
             LoginPage.id: (context) => LoginPage(),
             SplashScreen.id: (context) => SplashScreen(),
