@@ -15,12 +15,12 @@ You also can use VS code, Inelij IDE or Android Studio.
 
 ## Dependencies
 <a name= "Depend"></a>
-1. [Image Picker](pub.dev/packages/image_picker)
+1. [Image Picker](https://pub.dev/packages/image_picker)
 2. [Font Awesome Flutter](https://pub.dev/packages/font_awesome_flutter)
 3. [Animated Text Kit](https://pub.dev/packages/animated_text_kit)
 4. [Simple Animations](https://pub.dev/packages/simple_animations)
 5. [Page Transition](https://pub.dev/packages/page_transition)
-6. [HTTP package](pub.dev/packages/http)
+6. [HTTP package](https://pub.dev/packages/http)
 7. [Shared Preferences](https://pub.dev/packages/shared_preferences)
     - For the sake of simplicity we have used SharedPreferences, but may be in later versions the SQLite API might be used instead.
 8. [Provider Package](https://pub.dev/packages/provider)    
