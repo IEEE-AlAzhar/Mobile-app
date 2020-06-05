@@ -3,10 +3,10 @@
 A mobile application to help the IEEE-AlAzhar university student branch keep track of its members and allow membres to quickly see their feedbacks and achievements and be up-to-date with the recent events and updates in the team.
 ![IEEE-Al-Azhar University Student Branch](https://raw.githubusercontent.com/IEEE-AlAzhar/Official-Website/master/src/assets/images/logo.png)
 
-1. Installation [#install]
-2. Depedencies  [#Depend]
-3. Structure    [#Structure]
-4. Contribution [#con]
+1. [Installation] (#install)
+2. [Depedencies]  (#Depend)
+3. [Structure]    (#Structure)
+4. [Contribution] (#con)
 
 ## Installation
 <a name = "install"></a>
