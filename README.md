@@ -12,6 +12,19 @@ A mobile application to help the IEEE-AlAzhar university student branch keep tra
 <a name = "install"></a>
 This app is built with  Flutter - Google's app development framework. (https://flutter.io).
 You also can use VS code, Inelij IDE or Android Studio.
+You can follow [here](https://flutter.dev/docs/get-started/install) the official Docs for installing flutter and Android Studio.
+
+After you install the Flutter SDK and the proper IDE for you,
+make sure that you have also installed [git](https://git-scm.com/).
+
+1. Now, run in the git bash  
+    > $ git clone https://github.com/IEEE-AlAzhar/Mobile-app.git 
+2.  >  $ cd Mobile-app 
+3.  > $flutter run -d \<Specify here your emulator that you want your project to be run onto\>
+
+
+For more commands and details checkout [this](https://medium.com/flutter-community/flutter-and-the-command-line-a-love-story-a3648ef2411) article.    
+
 
 ## Dependencies
 <a name= "Depend"></a>
@@ -22,7 +35,7 @@ You also can use VS code, Inelij IDE or Android Studio.
 5. [Page Transition](https://pub.dev/packages/page_transition)
 6. [HTTP package](https://pub.dev/packages/http)
 7. [Shared Preferences](https://pub.dev/packages/shared_preferences)
-    - For the sake of simplicity we have used SharedPreferences, but may be in later versions the SQLite API might be used instead.
+    - For the sake of simplicity, we have used SharedPreferences, but may be in later versions the SQLite API might be used instead.
 8. [Provider Package](https://pub.dev/packages/provider)    
 
 ## Structure
