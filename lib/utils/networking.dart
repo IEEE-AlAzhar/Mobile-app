@@ -25,6 +25,11 @@ class NetworkHelper{
     var response =await http.post(loginURL,headers: headers,body:body);
     if(response.statusCode == 200){
       sharedPrefsHelper.saveToken(jsonDecode(response.body)["token"]);
+      sharedPrefsHelper.saveCommittee(jsonDecode(response.body)['committee']);
+      sharedPrefsHelper.saveRole(jsonDecode(response.body)['role']);
+      sharedPrefsHelper.saveImage(jsonDecode(response.body)['image']);
+      sharedPrefsHelper.saveFeedback(jsonDecode(response.body)['feedbacks']);
+      sharedPrefsHelper.saveAchievements(jsonDecode(response.body)['achievements']);
     }
     return response;
   }
