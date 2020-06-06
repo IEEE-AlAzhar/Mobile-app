@@ -6,11 +6,11 @@ Here's the list of the projects to pick to contribute to our code base and their
 **All API Docs needed will be given as soon as you are accepted as a contributer in the project**
 
 # Users item screen at the navigation drawer.
-Currently, there's four items in the navigation drawer Profile Page, Night Mode, Setting Page and Sign out.
+Currently, there are four items in the navigation drawer:  **Profile Page, Night Mode, Setting Page and Sign out.**
 The task here is to provide another item in the navigation drawer to open a page which all users of the app will be listed there.
-But there is a thing here, this screen should be widget will only be visible if the user of type "admin" and 
-thus he will be allowed to view all users in the team and see their profile pages, if the user is a "committee head" 
-he will be able to list all the the committee members only, and if the user is neither any one of these this item will 
+But there is a thing here, this screen should be a widget that will only be visible if the user is of type "admin" and 
+thus he/she will be allowed to view all users in the team and see their profile pages, if the user is a "committee head" 
+he/she will be able to list all the the committee members only, and if the user is neither any one of these this item will 
 be completely invisible to him/her.
 
 
