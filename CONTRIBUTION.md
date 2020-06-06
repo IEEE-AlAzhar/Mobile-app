@@ -11,12 +11,11 @@ If you're new to open source, read [this article](https://dvmhmdsd.me/blog/open-
 4. Help in code reviewing and provide feedback.
 
 # Required Steps to follow to make your PR accepted and merged
-1. Take care about semantics rules.
-2. Take care about accessibility rules.
-3. The names of functions, variables, components and classes should be descriptive 
+1. Take care about Encapsulation rules.
+2. The names of functions, variables, components and classes should be descriptive 
 and be according to the Dart [Naming Conventions](https://dart.dev/guides/language/effective-dart/style).
-4. No unnecessary comments.
-5. No warnings on the console or the terminal (always lint your code).
+3. No unnecessary comments.
+4. No warnings on the console or the terminal (always lint your code).
 
 # Add a new module or component
 If you see that there's a new module suitable for the application, write a proposal first that describes the following:
@@ -36,5 +35,6 @@ If you found a critical bug, open an issue on the issues tab and provide a detai
 
 # Frequently Asked Questions
 **I found a typo, should I report an issue before I can make a pull request?**
+
 For typos and other wording changes, you can directly open pull requests without first creating an issue. 
 Issues are more for discussing larger problems associated with code or structural aspects of the curriculum.
