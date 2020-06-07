@@ -14,12 +14,12 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   TextEditingController textEditingController = TextEditingController();
-
   bool showSpinner = false;
-
+ final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+       key: _scaffoldKey,
       body: ModalProgressHUD(
         inAsyncCall: showSpinner,
         child: Container(
@@ -62,6 +62,7 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                   onPressed: () {
+
                     setState(() {
                       showSpinner = true;
                     });
@@ -75,16 +76,18 @@ class _LoginPageState extends State<LoginPage> {
 
                         final snackBar =
                             SnackBar(content: Text('Incorrect code'));
-                        Scaffold.of(context).showSnackBar(snackBar);
+                        _scaffoldKey.currentState.showSnackBar(snackBar);
                       }
                     });
                   },
+
                 ),
               ],
             ),
           ),
         ),
-      ),
+
+
     );
   }
 
