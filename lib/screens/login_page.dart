@@ -17,63 +17,65 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
 
-      body:
-      Container(
-        margin: EdgeInsets.only(
-          left: 20.0,
-          right: 20.0,
-        ),
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Hero(
-                tag: 'logo',
-                child: CircleAvatar(
-                  radius: 70.0,
-                  backgroundImage: AssetImage('images/ieee_branch.png'),
-                ),
-              ),
-              SizedBox(
-                height: 20.0,
-              ),
-              TextField(
-                controller: textEditingController,
-                obscureText: true,
-                autofocus: true,
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'your code',
-                ),
-              ),
-              SizedBox(
-                height: 10.0,
-              ),
-              RaisedButton(
-                child: const Text(
-                  'log in',
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
+      body: Builder(
+        builder: (context)=>Container(
+          margin: EdgeInsets.only(
+            left: 20.0,
+            right: 20.0,
+          ),
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Hero(
+                  tag: 'logo',
+                  child: CircleAvatar(
+                    radius: 70.0,
+                    backgroundImage: AssetImage('images/ieee_branch.png'),
                   ),
                 ),
-                onPressed: () {
-                  nHelper.login(textEditingController.text).then((val) {
-                    if (val.statusCode == 200) {
-                      Navigator.of(context).pushNamed(HomeScreen.id);
-                    }
-                    else{
-                      final snackBar = SnackBar(content: Text('Incorrect code'));
-                      Scaffold.of(context).showSnackBar(snackBar);
-                    }
-                  });
-                },
+                SizedBox(
+                  height: 20.0,
+                ),
+                TextField(
+                  controller: textEditingController,
+                  obscureText: true,
+                  autofocus: true,
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    labelText: 'your code',
+                  ),
+                ),
+                SizedBox(
+                  height: 10.0,
+                ),
+                RaisedButton(
+                  child: const Text(
+                    'log in',
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  onPressed: () {
+                    nHelper.login(textEditingController.text).then((val) {
+                      if (val.statusCode == 200) {
+                        Navigator.of(context).pushNamed(HomeScreen.id);
+                      }
+                      else{
+                        final snackBar = SnackBar(content: Text('Incorrect code'));
+                        Scaffold.of(context).showSnackBar(snackBar);
+                      }
+                    });
+                  },
 
-              ),
-            ],
+                ),
+              ],
+            ),
           ),
         ),
-      ),
+      )
+
     );
   }
   void dispose() {
