@@ -13,12 +13,12 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   TextEditingController textEditingController = TextEditingController();
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
-      body: Builder(
-        builder: (context)=>Container(
+      key: _scaffoldKey,
+      body: Container(
           margin: EdgeInsets.only(
             left: 20.0,
             right: 20.0,
@@ -64,7 +64,7 @@ class _LoginPageState extends State<LoginPage> {
                       }
                       else{
                         final snackBar = SnackBar(content: Text('Incorrect code'));
-                        Scaffold.of(context).showSnackBar(snackBar);
+                        _scaffoldKey.currentState.showSnackBar(snackBar);
                       }
                     });
                   },
@@ -74,7 +74,7 @@ class _LoginPageState extends State<LoginPage> {
             ),
           ),
         ),
-      )
+
 
     );
   }
