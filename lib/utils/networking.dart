@@ -4,6 +4,9 @@ import 'shared_pref.dart';
 import 'package:http/http.dart' as http;
 
 const loginURL = "https://ieee-mobile-dashboard.herokuapp.com/api/users/login";
+
+const logoutURL =
+    "https://ieee-mobile-dashboard.herokuapp.com/api/users/logout";
 const annoucementsURL =
     "https://ieee-mobile-dashboard.herokuapp.com/api/announcements/list";
 
@@ -28,6 +31,19 @@ class NetworkHelper {
       sharedPrefsHelper.saveToken(jsonDecode(response.body)["token"]);
     }
     return response;
+  }
+
+  Future<http.Response> logout(String token) async {
+    Map<String, String> headers = {"x-access-token": token};
+    var response = await http.get(
+      logoutURL,
+      headers: headers,
+    );
+    if (response.statusCode == 200) {
+      return response;
+    } else {
+      print(response.statusCode);
+    }
   }
 
   Future<http.Response> getAnnouncements(String token) async {
