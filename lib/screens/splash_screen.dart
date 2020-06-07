@@ -6,6 +6,7 @@ import 'package:ieeeapp/screens/profile_page.dart';
 import 'package:ieeeapp/utils/FadeAnimation.dart';
 import 'package:ieeeapp/models/themes.dart';
 import 'home_page.dart';
+import 'login_page.dart';
 
 class SplashScreen extends StatefulWidget {
   static String id = "SplashScreen";
@@ -15,7 +16,6 @@ class SplashScreen extends StatefulWidget {
     return _SplashScreen();
   }
 }
-
 
 class _SplashScreen extends State<SplashScreen> with TickerProviderStateMixin {
   AnimationController _scaleController;
@@ -33,7 +33,7 @@ class _SplashScreen extends State<SplashScreen> with TickerProviderStateMixin {
 
   void getCurrentAppTheme() async {
     themeChangeProvider.darkTheme =
-    await themeChangeProvider.darkThemePreference.getTheme();
+        await themeChangeProvider.darkThemePreference.getTheme();
   }
 
   @override
@@ -84,27 +84,23 @@ class _SplashScreen extends State<SplashScreen> with TickerProviderStateMixin {
           ..addStatusListener((status) {
             if (status == AnimationStatus.completed) {
               Navigator.pushNamed(context, LoginPage.id);
-//              context,
-//              PageTransition(
-//                  type: PageTransitionType.fade, child: LoginPage()));
+
             }
           });
   }
 
-//  @override
-//  void initState() {
-//    super.initState();
-//    const duration = Duration(milliseconds: 7000);
-//    Timer(duration, () {
-//      Navigator.of(context).pop();
-//      Navigator.push(
-//          context, MaterialPageRoute(builder: (context) => SecondScreen()));
-//    });
-//  }
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    _scaleController.dispose();
+    _scale2Controller.dispose();
+    _widthController.dispose();
+    _positionController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
-//    final double width = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: Colors.black,
       body: Container(
@@ -129,17 +125,10 @@ class _SplashScreen extends State<SplashScreen> with TickerProviderStateMixin {
               height: 400.0,
               width: 500.0,
             ),
-//            Padding(
-//              padding: EdgeInsets.only(
-//                top: 10,
-//              ),
-//            ),
             ColorizeAnimatedTextKit(
                 text: ['    IEEE-AZHAR', 'Student Branch'],
                 textStyle: TextStyle(
                   fontSize: 35,
-
-//                color: Colors.indigo.shade900,
                   fontFamily: "Ewert",
                 ),
                 colors: [

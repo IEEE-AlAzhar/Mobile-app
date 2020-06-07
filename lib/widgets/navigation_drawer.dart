@@ -3,7 +3,14 @@ import 'package:ieeeapp/models/themes.dart';
 import 'package:ieeeapp/screens/profile_page.dart';
 import 'package:ieeeapp/screens/settings_page.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:modal_progress_hud/modal_progress_hud.dart';
+import '../screens/login_page.dart';
+import '../utils/networking.dart';
+import '../utils/shared_pref.dart';
 
+SharedPrefsHelper shared = SharedPrefsHelper();
+NetworkHelper net = NetworkHelper();
 
 class NavigationDrawer extends StatefulWidget {
   @override
@@ -13,96 +20,132 @@ class NavigationDrawer extends StatefulWidget {
 class _NavigationDrawerState extends State<NavigationDrawer> {
   bool isDark = false;
 
+  bool showSpinner = false;
+
+  String token;
+  @override
+  void initState() {
+    var value;
+
+    shared.readToken().then((value) {
+      token = value;
+    });
+
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     final themeChange = Provider.of<DarkThemeProvider>(context);
     return Drawer(
-      child: SafeArea(
-        child: Column(
-          children: <Widget>[
-            Container(
-              width: double.infinity,
-              padding: EdgeInsets.all(20.0),
-              color: themeChange.darkTheme ? Colors.blueGrey : Colors.blue[300],
-              child: Center(
-                child: Column(
-                  children: <Widget>[
-                    CircleAvatar(
-                      backgroundImage: AssetImage(''),
-                      radius: 70.0,
-                    ),
-                    Text(
-                      'user name',
-                      style: TextStyle(
-                        fontSize: 20,
-                        color: Colors.black,
+      child: ModalProgressHUD(
+        inAsyncCall: showSpinner,
+        child: SafeArea(
+          child: Column(
+            children: <Widget>[
+              Container(
+                width: double.infinity,
+                padding: EdgeInsets.all(20.0),
+                color:
+                    themeChange.darkTheme ? Colors.blueGrey : Colors.blue[300],
+                child: Center(
+                  child: Column(
+                    children: <Widget>[
+                      CircleAvatar(
+                        backgroundImage: AssetImage(''),
+                        radius: 70.0,
                       ),
-                    )
-                  ],
+                      Text(
+                        'user name',
+                        style: TextStyle(
+                          fontSize: 20,
+                          color: Colors.black,
+                        ),
+                      )
+                    ],
+                  ),
                 ),
               ),
-            ),
-            ListTile(
-              leading: Icon(Icons.person),
-              title: Text(
-                'profile',
-                style: TextStyle(
-                  fontSize: 18,
+              ListTile(
+                leading: Icon(Icons.person),
+                title: Text(
+                  'profile',
+                  style: TextStyle(
+                    fontSize: 18,
+                  ),
                 ),
+                onTap: () {
+                  Navigator.of(context).pushNamed(ProfilePage.id);
+                },
               ),
-              onTap: () {
-                Navigator.of(context).pushNamed(ProfilePage.id);
-              },
-            ),
-            Divider(
-              height: 10.0,
-            ),
-            ListTile(
-              leading: Icon(
-                Icons.brightness_6,
+              Divider(
+                height: 10.0,
               ),
-              title: Text(
-                'Night mood',
-                style: TextStyle(
-                  fontSize: 18,
+              ListTile(
+                leading: Icon(
+                  Icons.brightness_6,
                 ),
-              ),
-              onTap: () {
-                setState(() {
-                  isDark = !isDark;
-                });
-                themeChange.darkTheme = isDark;
-              },
-            ),
-            Divider(
-              height: 10.0,
-            ),
-            ListTile(
-              leading: Icon(Icons.settings),
-              title: Text(
-                'Setting',
-                style: TextStyle(
-                  fontSize: 18,
+                title: Text(
+                  'Night mood',
+                  style: TextStyle(
+                    fontSize: 18,
+                  ),
                 ),
+                onTap: () {
+                  setState(() {
+                    isDark = !isDark;
+                  });
+                  themeChange.darkTheme = isDark;
+                },
               ),
-              onTap: () {
-                Navigator.of(context).pushNamed(SettingsScreen.id);
-              },
-            ),
-            Divider(
-              height: 10.0,
-            ),
-            ListTile(
-              leading: Icon(Icons.exit_to_app),
-              title: Text(
-                'sign out',
-                style: TextStyle(
-                  fontSize: 18,
+              Divider(
+                height: 10.0,
+              ),
+              ListTile(
+                leading: Icon(Icons.settings),
+                title: Text(
+                  'Setting',
+                  style: TextStyle(
+                    fontSize: 18,
+                  ),
                 ),
+                onTap: () {
+                  Navigator.of(context).pushNamed(SettingsScreen.id);
+                },
               ),
-              onTap: () {},
-            ),
-          ],
+              Divider(
+                height: 10.0,
+              ),
+              ListTile(
+                leading: Icon(Icons.exit_to_app),
+                title: Text(
+                  'sign out',
+                  style: TextStyle(
+                    fontSize: 18,
+                  ),
+                ),
+                onTap: () {
+                  setState(() {
+                    showSpinner = true;
+                  });
+                  net.logout(token).then((val) {
+                    if (val.statusCode == 200) {
+                      token = '0';
+                      shared.saveToken(token);
+                      Navigator.pushReplacement(context,
+                          MaterialPageRoute(builder: (context) {
+                        return LoginPage();
+                      }));
+                    } else {
+                      setState(() {
+                        showSpinner = false;
+                      });
+                    }
+                  });
+                },
+              ),
+            ],
+          ),
         ),
       ),
     );
