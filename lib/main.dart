@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ieeeapp/screens/home_page.dart';
+import 'package:ieeeapp/screens/login_page.dart';
 import 'package:ieeeapp/screens/profile_page.dart';
 import 'package:ieeeapp/screens/settings_page.dart';
 import 'package:ieeeapp/screens/splash_screen.dart';
@@ -20,12 +21,13 @@ void main() => runApp(ChangeNotifierProvider(
           debugShowCheckedModeBanner: false,
           title: "IEEE AL-AZHAR SB APP",
           theme: Styles.themeData(themeChangeProvider.darkTheme, context),
-          initialRoute: HomeScreen.id,
+          initialRoute: SplashScreen.id,
           routes: {
             SplashScreen.id: (context) => SplashScreen(),
             SettingsScreen.id: (context) => SettingsScreen(),
             HomeScreen.id: (context) => HomeScreen(),
             ProfilePage.id: (context) => ProfilePage(),
+            LoginPage.id : (context)=> LoginPage()
           },
         );
       }),

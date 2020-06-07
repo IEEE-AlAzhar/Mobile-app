@@ -1,7 +1,9 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:ieeeapp/FadeAnimation.dart';
+import 'package:ieeeapp/screens/login_page.dart';
+import 'package:ieeeapp/screens/profile_page.dart';
+import 'package:ieeeapp/utils/FadeAnimation.dart';
 import 'package:ieeeapp/models/themes.dart';
 import 'home_page.dart';
 
@@ -50,7 +52,7 @@ class _SplashScreen extends State<SplashScreen> with TickerProviderStateMixin {
           });
 
     _widthController =
-        AnimationController(vsync: this, duration: Duration(milliseconds: 600));
+        AnimationController(vsync: this, duration: Duration(milliseconds: 300));
 
     _widthAnimation =
         Tween<double>(begin: 80.0, end: 300.0).animate(_widthController)
@@ -61,7 +63,7 @@ class _SplashScreen extends State<SplashScreen> with TickerProviderStateMixin {
           });
 
     _positionController = AnimationController(
-        vsync: this, duration: Duration(milliseconds: 1000));
+        vsync: this, duration: Duration(milliseconds: 300));
 
     _positionAnimation =
         Tween<double>(begin: 0.0, end: 215.0).animate(_positionController)
@@ -75,14 +77,13 @@ class _SplashScreen extends State<SplashScreen> with TickerProviderStateMixin {
           });
 
     _scale2Controller =
-        AnimationController(vsync: this, duration: Duration(milliseconds: 800));
+        AnimationController(vsync: this, duration: Duration(milliseconds: 300));
 
     _scale2Animation =
         Tween<double>(begin: 1.0, end: 50.0).animate(_scale2Controller)
           ..addStatusListener((status) {
             if (status == AnimationStatus.completed) {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => HomeScreen()));
+              Navigator.pushNamed(context, LoginPage.id);
 //              context,
 //              PageTransition(
 //                  type: PageTransitionType.fade, child: LoginPage()));
