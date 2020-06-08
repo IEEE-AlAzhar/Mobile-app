@@ -26,39 +26,73 @@ class _LoginPageState extends State<LoginPage> {
         body: ModalProgressHUD(
           inAsyncCall: showSpinner,
           child: Container(
-            margin: EdgeInsets.only(
-              left: 20.0,
-              right: 20.0,
+            decoration: BoxDecoration(
+              gradient: LinearGradient(begin: Alignment.topCenter, colors: [
+                Colors.grey,
+                Colors.white,
+                Colors.indigo[800],
+              ]),
             ),
+//            margin: EdgeInsets.only(
+//              left: 10.0,
+//              right: 10.0,
+//            ),
             child: Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  Hero(
-                    tag: 'logo',
-                    child: CircleAvatar(
-                      radius: 70.0,
-                      backgroundImage: AssetImage('images/ieee_branch.png'),
+                  Container(
+                    child: Image.asset('images/ieee_azhar.png'),
+
+//                    tag: 'logo',
+//                    child: CircleAvatar(
+//                      radius: 150.0,
+//                      backgroundImage: AssetImage('images/ieee_azhar.png'),
+                  ),
+//                  ),
+                  SizedBox(
+                    height: 30.0,
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(left: 20, right: 20),
+                    padding: EdgeInsets.all(5),
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(15.0),
+                          bottomRight: Radius.circular(15.0),
+                        ),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Color.fromRGBO(143, 148, 251, 1),
+                            blurRadius: 20.0,
+                            offset: Offset(0, 10),
+                          ),
+                        ]),
+                    child: TextField(
+                      style: TextStyle(fontSize: 20),
+//                    controller: textEditingController,
+//                    obscureText: true,
+//                    autofocus: true,
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(),
+                        labelText: 'your code',
+                      ),
                     ),
                   ),
                   SizedBox(
-                    height: 70.0,
-                  ),
-                  TextField(
-                    controller: textEditingController,
-                    obscureText: true,
-                    autofocus: true,
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                      labelText: 'your code',
-                    ),
-                  ),
-                  SizedBox(
-                    height: 10.0,
+                    height: 20.0,
                   ),
                   RaisedButton(
+                    color: Colors.white,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(15.0),
+                        bottomRight: Radius.circular(15.0),
+                      ),
+                    ),
                     child: const Text(
-                      'log in',
+                      'login',
                       style: TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
