@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ieeeapp/constants.dart';
 import 'package:ieeeapp/screens/home_page.dart';
 import 'package:ieeeapp/utils/networking.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
@@ -28,9 +29,9 @@ class _LoginPageState extends State<LoginPage> {
           child: Container(
             decoration: BoxDecoration(
               gradient: LinearGradient(begin: Alignment.topCenter, colors: [
-                Colors.grey,
+                Colors.lightBlueAccent,
                 Colors.white,
-                Colors.indigo[800],
+                primaryColor,
               ]),
             ),
 //            margin: EdgeInsets.only(
@@ -71,7 +72,7 @@ class _LoginPageState extends State<LoginPage> {
                         ]),
                     child: TextField(
                       style: TextStyle(fontSize: 20),
-//                    controller: textEditingController,
+                      controller: textEditingController,
 //                    obscureText: true,
 //                    autofocus: true,
                       decoration: InputDecoration(
@@ -91,7 +92,7 @@ class _LoginPageState extends State<LoginPage> {
                         bottomRight: Radius.circular(15.0),
                       ),
                     ),
-                    child: const Text(
+                    child: Text(
                       'login',
                       style: TextStyle(
                         fontSize: 20,
