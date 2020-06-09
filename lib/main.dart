@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:ieeeapp/screens/achievement_page.dart';
+import 'package:ieeeapp/screens/feedback_page.dart';
 import 'package:ieeeapp/screens/home_page.dart';
 import 'package:ieeeapp/screens/profile_page.dart';
 import 'package:ieeeapp/screens/settings_page.dart';
@@ -8,9 +10,6 @@ import 'package:provider/provider.dart';
 import 'package:ieeeapp/screens/login_page.dart';
 import 'models/themes.dart';
 import 'screens/home_page.dart';
-import 'screens/login_page.dart';
-import 'screens/login_page.dart';
-import 'screens/login_page.dart';
 import 'screens/login_page.dart';
 
 DarkThemeProvider themeChangeProvider = new DarkThemeProvider();
@@ -32,6 +31,8 @@ void main() => runApp(ChangeNotifierProvider(
             SettingsScreen.id: (context) => SettingsScreen(),
             HomeScreen.id: (context) => HomeScreen(),
             ProfilePage.id: (context) => ProfilePage(),
+            AchievementPage.id:(context) => AchievementPage(),
+            FeedbackPage.id:(context) => FeedbackPage(),
           },
         );
       }),

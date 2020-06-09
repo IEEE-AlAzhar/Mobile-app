@@ -1,3 +1,4 @@
+import 'package:ieeeapp/utils/dart_themes_styles.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SharedPrefsHelper {
@@ -73,28 +74,76 @@ class SharedPrefsHelper {
     return value;
   }
 
-  saveAchievements(String achievements)async{
+  saveAchievements(List achievements)async{
     final sharedPrefs = await SharedPreferences.getInstance();
     var key = 'achievements';
-    sharedPrefs.setString(key, achievements);
+    sharedPrefs.setStringList(key, achievements);
   }
 
-  Future<String> readAchievements() async{
+  Future<List> readAchievements() async{
     final sharedPrefs = await SharedPreferences.getInstance();
     var key = 'achievements';
-    final value = sharedPrefs.get(key);
+    final List  value = sharedPrefs.get(key);
     return value;
   }
 
-  saveFeedback(String feedbacks)async{
+  saveFeedback(List feedbacks)async{
     final sharedPrefs = await SharedPreferences.getInstance();
-    var key = feedbacks;
-    sharedPrefs.setString(key, feedbacks);
+    var key = 'feedbacks';
+    sharedPrefs.setStringList(key, feedbacks);
   }
 
   Future<List> readFeedback() async{
     final sharedPrefs = await SharedPreferences.getInstance();
     var key = 'feedbacks';
+    final value = sharedPrefs.get(key);
+    return value;
+  }
+  saveTitle(String title)async{
+    final sharedPrefs = await SharedPreferences.getInstance();
+    var key = 'title';
+    sharedPrefs.setString(key, title);
+  }
+
+  Future<String> readTitle() async{
+    final sharedPrefs = await SharedPreferences.getInstance();
+    var key = 'title';
+    final value = sharedPrefs.get(key);
+    return value;
+  }
+  saveDescription(String description)async{
+    final sharedPrefs = await SharedPreferences.getInstance();
+    var key = 'description';
+    sharedPrefs.setString(key, description);
+  }
+
+  Future<String> readDescription() async{
+    final sharedPrefs = await SharedPreferences.getInstance();
+    var key = 'description';
+    final value = sharedPrefs.get(key);
+    return value;
+  }
+  saveDate(String date)async{
+    final sharedPrefs = await SharedPreferences.getInstance();
+    var key = 'date';
+    sharedPrefs.setString(key, date);
+  }
+
+  Future<String> readDate() async{
+    final sharedPrefs = await SharedPreferences.getInstance();
+    var key = 'date';
+    final value = sharedPrefs.get(key);
+    return value;
+  }
+  saveCover(String cover)async{
+    final sharedPrefs = await SharedPreferences.getInstance();
+    var key = 'cover';
+    sharedPrefs.setString(key, cover);
+  }
+
+  Future<String> readCover() async{
+    final sharedPrefs = await SharedPreferences.getInstance();
+    var key = 'cover';
     final value = sharedPrefs.get(key);
     return value;
   }

@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ieeeapp/FadeAnimation.dart';
 import 'package:ieeeapp/models/themes.dart';
+import 'package:ieeeapp/screens/login_page.dart';
 import 'home_page.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -82,7 +83,7 @@ class _SplashScreen extends State<SplashScreen> with TickerProviderStateMixin {
           ..addStatusListener((status) {
             if (status == AnimationStatus.completed) {
               Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => HomeScreen()));
+                  MaterialPageRoute(builder: (context) => LoginPage()));
 //              context,
 //              PageTransition(
 //                  type: PageTransitionType.fade, child: LoginPage()));
