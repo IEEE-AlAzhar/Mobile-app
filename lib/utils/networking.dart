@@ -18,6 +18,7 @@ class NetworkHelper {
   }
 
   static final NetworkHelper internalObject = NetworkHelper._internal();
+
   NetworkHelper._internal();
 
   Future<http.Response> login(String code) async {
@@ -54,6 +55,8 @@ class NetworkHelper {
 
     if (response.statusCode == 200) {
       return response;
+    } else {
+      throw Exception('Failed to load announcement');
     }
   }
 }
