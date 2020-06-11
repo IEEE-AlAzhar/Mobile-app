@@ -96,7 +96,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     title: text('Achievements', 20),
                     trailing: Icon(Icons.arrow_forward_ios,),
                     onTap: (){
-                      Navigator.of(context).pushNamed(AchievementPage.id);
+                      Navigator.of(context).pushNamed(AchievementsPage.id);
                     } ,
                   ),
                   Divider(

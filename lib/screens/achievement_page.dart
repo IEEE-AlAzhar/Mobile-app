@@ -1,52 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:ieeeapp/utils/shared_pref.dart';
+import 'package:ieeeapp/utils/networking.dart';
 
-
-SharedPrefsHelper sharedPrefsHelper = SharedPrefsHelper();
-
-class AchievementPage extends StatelessWidget {
-  static String id = 'AchievementsPage';
+NetworkHelper nHelper = NetworkHelper();
+class AchievementsPage extends StatelessWidget {
+  static String id = 'AcheivementsPage';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title:Text('Achievements'),centerTitle: true),
-       body: Container(
-         child: Column(
-           children: [
-           FutureBuilder(
-               future: sharedPrefsHelper.readTitle(),
-               builder: (_, snapshot) {
-                 if(snapshot.hasData){
-                   return Text('${snapshot.data}');
-                 }else{
-                   return Text('this is empty');
-                 }
-               }
-           ),
-//           FutureBuilder(
-//               future: sharedPrefsHelper.readDescription(),
-//               builder: (_, snapshot) {
-//                 if(snapshot.hasData){
-//                   return Text('${snapshot.data}');
-//                 }else{
-//                   return Text('this is empty');
-//                 }
-//               }
-//           ),
-//           FutureBuilder(
-//               future: sharedPrefsHelper.readDate(),
-//               builder: (_, snapshot) {
-//                 if(snapshot.hasData){
-//                   return Text('${snapshot.data}');
-//                 }else{
-//                   return Text('this is empty');
-//                 }
-//               }
-//           ),
-         ],),
-       )
-
-
+      appBar: AppBar(title: Text('Achevements'),centerTitle: true,),
+      body: Container(
+        child: ListView.builder(
+            itemCount: nHelper.ache.length,
+            itemBuilder: (context,index){
+              return ListTile(
+                title: Text("${nHelper.ache[index].achTit}"),
+              );
+            }
+        ),
+      ),
     );
   }
 }
