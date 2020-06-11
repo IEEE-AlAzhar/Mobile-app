@@ -14,7 +14,7 @@ newEvent(Announcement announcement) {
         children: <Widget>[
           Container(
             child: Center(
-              child: FadeInImage.assetNetwork(fit: BoxFit.fill,
+              child: FadeInImage.assetNetwork(
                   placeholder: "images/giphy.gif", image: announcement.cover),
             ),
           ),
