@@ -4,8 +4,11 @@ import 'shared_pref.dart';
 import 'package:http/http.dart' as http;
 
 const loginURL = "https://ieee-mobile-dashboard.herokuapp.com/api/users/login";
+
 const logoutURL =
     "https://ieee-mobile-dashboard.herokuapp.com/api/users/logout";
+const annoucementsURL =
+    "https://ieee-mobile-dashboard.herokuapp.com/api/announcements/list";
 
 SharedPrefsHelper sharedPrefsHelper = SharedPrefsHelper();
 
@@ -41,6 +44,19 @@ class NetworkHelper {
       return response;
     } else {
       print(response.statusCode);
+    }
+  }
+
+  Future<http.Response> getAnnouncements(String token) async {
+    Map<String, String> header = {
+      "x-access-token": token,
+    };
+    var response = await http.get(annoucementsURL, headers: header);
+
+    if (response.statusCode == 200) {
+      return response;
+    } else {
+      throw Exception('Failed to load announcement');
     }
   }
 }
