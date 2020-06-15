@@ -1,6 +1,6 @@
-# ieeeapp
+# IEEE Mobile Application
 
-A new Flutter application.
+A mobile application to help the IEEE-AlAzhar university student branch keep track of its members and allow membres to quickly see their feedbacks and achievements and be up-to-date with the recent events and updates in the team.
 
 ## Getting Started
 
