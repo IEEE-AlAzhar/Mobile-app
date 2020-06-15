@@ -27,11 +27,10 @@ class _SplashScreen extends State<SplashScreen> with TickerProviderStateMixin {
   void initState() {
     super.initState();
     getCurrentAppTheme();
-
     const duration = Duration(milliseconds: 3000);
     Timer(duration, () {
-      Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (context) => LoginPage()));
+      Navigator.of(context).pushReplacement(
+           MaterialPageRoute(builder: (context) => LoginPage()));
     });
   }
 
