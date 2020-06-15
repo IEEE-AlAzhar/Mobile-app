@@ -1,14 +1,10 @@
 import 'dart:async';
-
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-//import 'package:ieeeapp/screens/login_page.dart';
-//import 'package:ieeeapp/screens/profile_page.dart';
 import 'package:ieeeapp/models/themes.dart';
 import 'package:ieeeapp/screens/login_page.dart';
-//import 'home_page.dart';
-//import 'login_page.dart';
+
 
 class SplashScreen extends StatefulWidget {
   static String id = "SplashScreen";
@@ -34,7 +30,6 @@ class _SplashScreen extends State<SplashScreen> with TickerProviderStateMixin {
 
     const duration = Duration(milliseconds: 3000);
     Timer(duration, () {
-      Navigator.of(context).pop();
       Navigator.pushReplacement(
           context, MaterialPageRoute(builder: (context) => LoginPage()));
     });
