@@ -32,7 +32,7 @@ void main() => runApp(ChangeNotifierProvider(
             SettingsScreen.id: (context) => SettingsScreen(),
             HomeScreen.id: (context) => HomeScreen(),
             ProfilePage.id: (context) => ProfilePage(),
-            AchievementsPage.id:(context) => AchievementsPage(),
+//            AchievementsPage.id:(context) => AchievementsPage(),
             FeedbackPage.id:(context) => FeedbackPage(),
           },
         );

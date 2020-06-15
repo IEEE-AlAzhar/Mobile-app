@@ -20,7 +20,7 @@ class NetworkHelper {
 
   NetworkHelper._internal();
 
-  List<Achievements> ache=[];
+//  List<Achievements> ache=[];
 
   Future<http.Response> login(String code) async {
     Map<String, String> headers = {
@@ -37,9 +37,9 @@ class NetworkHelper {
       sharedPrefsHelper.saveImage(jsonDecode(response.body)["user"]["image"]);
       List ach= (jsonDecode(response.body)["user"]["achievements"]);
 
-      for(var item in ach) {
-        ache.add(Achievements(achTit: item["title"],achDesc: item["description"],achDate: item["date"],achCover: item["cover"]));
-      }
+//      for(var item in ach) {
+//        ache.add(Achievements(achTit: item["title"],achDesc: item["description"],achDate: item["date"],achCover: item["cover"]));
+//      }
 
     }
     return response;
