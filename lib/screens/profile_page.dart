@@ -18,10 +18,6 @@ class _ProfilePageState extends State<ProfilePage> {
   Widget build(BuildContext context) {
     final themeChange = Provider.of<DarkThemeProvider>(context);
     return Scaffold(
-        appBar: AppBar(
-          title: text('Technical', 15.0),
-          elevation: 0.0,
-        ),
         body: Column(
           children: <Widget>[
             Container(
@@ -95,9 +91,9 @@ class _ProfilePageState extends State<ProfilePage> {
                     leading: Icon(Icons.business_center),
                     title: text('Achievements', 20),
                     trailing: Icon(Icons.arrow_forward_ios,),
-//                    onTap: (){
-//                      Navigator.of(context).pushNamed(AchievementsPage.id);
-//                    } ,
+                    onTap: (){
+                      Navigator.of(context).pushNamed(AchievementsPage.id);
+                    } ,
                   ),
                   Divider(
                     height: 20.0,
@@ -106,9 +102,9 @@ class _ProfilePageState extends State<ProfilePage> {
                     leading: Icon(Icons.feedback),
                     title: text('Feedback', 20),
                     trailing: Icon(Icons.arrow_forward_ios,),
-//                    onTap: (){
-//                      Navigator.of(context).pushNamed(FeedbackPage.id);
-//                    } ,
+                    onTap: (){
+                      Navigator.of(context).pushNamed(FeedbackPage.id);
+                    } ,
                   ),
                 ],
               ),

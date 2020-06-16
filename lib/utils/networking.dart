@@ -1,13 +1,17 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:ieeeapp/models/achievement.dart';
+import 'package:ieeeapp/models/feedback.dart';
 
 import 'shared_pref.dart';
 import 'package:http/http.dart' as http;
 
 const loginURL = "https://ieee-mobile-dashboard.herokuapp.com/api/users/login";
+
 const logoutURL =
     "https://ieee-mobile-dashboard.herokuapp.com/api/users/logout";
+const annoucementsURL =
+    "https://ieee-mobile-dashboard.herokuapp.com/api/announcements/list";
 
 SharedPrefsHelper sharedPrefsHelper = SharedPrefsHelper();
 
@@ -20,7 +24,8 @@ class NetworkHelper {
 
   NetworkHelper._internal();
 
-//  List<Achievements> ache=[];
+  List<Achievements> ache=[];
+  List<Feedback> feedBack=[];
 
   Future<http.Response> login(String code) async {
     Map<String, String> headers = {
@@ -36,10 +41,15 @@ class NetworkHelper {
       sharedPrefsHelper.saveRole(jsonDecode(response.body)["user"]["role"]);
       sharedPrefsHelper.saveImage(jsonDecode(response.body)["user"]["image"]);
       List ach= (jsonDecode(response.body)["user"]["achievements"]);
+      List feed= (jsonDecode(response.body)["user"]["feedbacks"]);
 
-//      for(var item in ach) {
-//        ache.add(Achievements(achTit: item["title"],achDesc: item["description"],achDate: item["date"],achCover: item["cover"]));
-//      }
+      for(var item in ach) {
+        ache.add(Achievements(achTit: item["title"],achDesc: item["description"],achDate: item["date"],achCover: item["cover"]));
+      }
+
+      for(var item in feed) {
+        feedBack.add(Feedback(fedTit: item["title"],fedBody: item["body"],fedDate: item["date"]));
+      }
 
     }
     return response;
@@ -55,6 +65,19 @@ class NetworkHelper {
       return response;
     } else {
       print(response.statusCode);
+    }
+  }
+
+  Future<http.Response> getAnnouncements(String token) async {
+    Map<String, String> header = {
+      "x-access-token": token,
+    };
+    var response = await http.get(annoucementsURL, headers: header);
+
+    if (response.statusCode == 200) {
+      return response;
+    } else {
+      throw Exception('Failed to load announcement');
     }
   }
 

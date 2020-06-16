@@ -33,6 +33,8 @@ dependencies:
   modal_progress_hud: ^0.1.3
   flushbar: ^1.10.0
   provider: ^4.0.5+1
+  intl: ^0.16.1
+
 
 
 
