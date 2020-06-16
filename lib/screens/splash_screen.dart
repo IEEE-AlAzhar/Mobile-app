@@ -20,7 +20,7 @@ class _SplashScreen extends State<SplashScreen> with TickerProviderStateMixin {
 
   void getCurrentAppTheme() async {
     themeChangeProvider.darkTheme =
-        await themeChangeProvider.darkThemePreference.getTheme();
+    await themeChangeProvider.darkThemePreference.getTheme();
   }
 
   @override
@@ -41,9 +41,9 @@ class _SplashScreen extends State<SplashScreen> with TickerProviderStateMixin {
       body: Container(
         decoration: BoxDecoration(
             border: Border.all(
-          color: Colors.white,
-          width: 1,
-        )),
+              color: Colors.white,
+              width: 1,
+            )),
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
         child: Column(

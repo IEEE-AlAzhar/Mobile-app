@@ -112,7 +112,7 @@ class _LoginPageState extends State<LoginPage> {
                           });
 
                           final snackBar =
-                              SnackBar(content: Text('Incorrect code'));
+                          SnackBar(content: Text('Incorrect code'));
                           _scaffoldKey.currentState.showSnackBar(snackBar);
                         }
                       });
