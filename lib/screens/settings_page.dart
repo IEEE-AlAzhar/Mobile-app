@@ -6,7 +6,6 @@ import 'package:ieeeapp/utils/networking.dart';
 import 'package:ieeeapp/widgets/input_field.dart';
 import 'package:image_picker/image_picker.dart';
 
-import 'home_page.dart';
 
 NetworkHelper nHelper = NetworkHelper();
 

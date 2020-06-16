@@ -15,35 +15,11 @@ import 'screens/login_page.dart';
 DarkThemeProvider themeChangeProvider = new DarkThemeProvider();
 
 void main() => runApp(ChangeNotifierProvider(
-
-
-    create: (context) {
-      return themeChangeProvider;
-    },
-    child: Consumer<DarkThemeProvider>(
-        builder: (BuildContext context, value, Widget child) {
-          return MaterialApp(
-            debugShowCheckedModeBanner: false,
-            title: "IEEE AL-AZHAR SB APP",
-            theme: Styles.themeData(themeChangeProvider.darkTheme, context),
-            initialRoute: SplashScreen.id,
-            routes: {
-              LoginPage.id: (context) => LoginPage(),
-              SplashScreen.id: (context) => SplashScreen(),
-              SettingsScreen.id: (context) => SettingsScreen(),
-              HomeScreen.id: (context) => HomeScreen(),
-              ProfilePage.id: (context) => ProfilePage(),
-            },
-          );
-        }),
-  ));
-
-
-      create: (context) {
-        return themeChangeProvider;
-      },
-      child: Consumer<DarkThemeProvider>(
-          builder: (BuildContext context, value, Widget child) {
+  create: (context) {
+    return themeChangeProvider;
+  },
+  child: Consumer<DarkThemeProvider>(
+      builder: (BuildContext context, value, Widget child) {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
           title: "IEEE AL-AZHAR SB APP",
@@ -58,5 +34,4 @@ void main() => runApp(ChangeNotifierProvider(
           },
         );
       }),
-    ));
-
+));
