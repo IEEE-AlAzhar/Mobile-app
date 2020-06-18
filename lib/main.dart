@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+
+import 'package:ieeeapp/screens/achievement_page.dart';
+import 'package:ieeeapp/screens/feedback_page.dart';
 import 'package:ieeeapp/screens/announcement_details.dart';
 import 'package:ieeeapp/screens/home_page.dart';
 import 'package:ieeeapp/screens/login_page.dart';
@@ -31,6 +34,8 @@ void main() => runApp(ChangeNotifierProvider(
             SettingsScreen.id: (context) => SettingsScreen(),
             HomeScreen.id: (context) => HomeScreen(),
             ProfilePage.id: (context) => ProfilePage(),
+            AchievementsPage.id:(context) => AchievementsPage(),
+            FeedbackPage.id:(context) => FeedbackPage(),
           },
         );
       }),
