@@ -14,6 +14,8 @@ const logoutURL =
 const annoucementsURL =
     "https://ieee-mobile-dashboard.herokuapp.com/api/announcements/list";
 
+const updateImageUrl = "https://ieee-mobile-dashboard.herokuapp.com/api/users/";
+const ImageFile = "image=@/home/mohamedsaad/Downloads/v8.png";
 
 SharedPrefsHelper sharedPrefsHelper = SharedPrefsHelper();
 
@@ -107,6 +109,23 @@ class NetworkHelper {
       return response;
     }
     else {
+      print('${response.statusCode}');
+    }
+    return response;
+  }
+
+  Future<http.Response> updateImage(String id, String token) async{
+    Map<String , String> headers = {
+      "x-access-token": "$token",
+      "Content-Type": "multipart/form-data",
+      "Accept": "multipart/form-data",
+    };
+    var body = jsonEncode(ImageFile);
+    var response = await http.put("$updateImageUrl/$id/image",headers: headers,body: body);
+    if(response.statusCode==200){
+      return response;
+    }
+    else{
       print('${response.statusCode}');
     }
     return response;

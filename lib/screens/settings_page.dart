@@ -7,6 +7,7 @@ import 'package:ieeeapp/widgets/input_field.dart';
 import 'package:image_picker/image_picker.dart';
 
 
+
 NetworkHelper nHelper = NetworkHelper();
 
 TextEditingController myController = TextEditingController();
@@ -21,6 +22,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
   File _image;
   String token = '';
   String id = '';
+  String _imagepath;
+
 
   TextEditingController myController = new TextEditingController();
 
@@ -28,25 +31,28 @@ class _SettingsScreenState extends State<SettingsScreen> {
   void initState() {
     super.initState();
 
-    sharedPrefsHelper.readToken().then((value){
+    sharedPrefsHelper.readToken().then((value) {
       setState(() {
         token = value;
       });
     });
 
-    sharedPrefsHelper.readId().then((value){
+    sharedPrefsHelper.readId().then((value) {
       setState(() {
         id = value;
       });
     });
-    sharedPrefsHelper.readPhone().then((value){
+    sharedPrefsHelper.readPhone().then((value) {
       setState(() {
         myController.text = value;
       });
     });
-
+    sharedPrefsHelper.readImage().then((value) {
+      setState(() {
+        _imagepath = value;
+      });
+    });
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -115,26 +121,34 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     alignment: Alignment.center,
                     child: Padding(
                       padding: EdgeInsets.only(left: 40.0),
-                      child: CircleAvatar(
-                        backgroundColor: Colors.white,
+                       child :CircleAvatar(
+                          backgroundColor: Colors.white,
+                         backgroundImage: FileImage(File(_imagepath)),
                         radius: 100.0,
                         child: ClipOval(
                           child: SizedBox(
-                              height: 180.0,
-                              width: 180.0,
-                              child: _image == null
-                                  ? Center(
-                                      child: Text(
-                                        'Add a Photo',
-                                        style: TextStyle(
-                                            color: Colors.black,
-                                            fontSize: 20.0),
-                                      ),
-                                    )
-                                  : Image.file(
+                            height: 180.0,
+                            width: 180.0,
+                            child: FutureBuilder(
+                                future: sharedPrefsHelper.readImage(),
+                                builder: (_, snapshot) {
+                                  if (snapshot.hasData) {
+                                    return _image != null
+                                        ? Image.file(
                                       _image,
                                       fit: BoxFit.fill,
-                                    )),
+                                    )
+                                        : Image.network(
+                                      snapshot.data,
+                                      fit: BoxFit.fill,
+                                    );
+                                  } else {
+                                    return CircleAvatar(
+                                      backgroundImage: AssetImage("image/pic.png"),
+                                    );
+                                  }
+                                }),
+                          ),
                         ),
                       ),
                     ),
@@ -158,72 +172,97 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 ],
               ),
               Padding(
-                padding: EdgeInsets.all(30.0),
+                padding: EdgeInsets.all(25.0),
               ),
-                  Column(
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.all(15.0),
-                       child: InputField('Update Phone',myController),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: 50.0,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  RaisedButton(
-                    onPressed: () {},
-                    elevation: 6.0,
-                    padding: EdgeInsets.only(
-                        left: 25.0, top: 10.0, bottom: 10.0, right: 25.0),
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10.0)),
-                    color: Colors.grey,
-                    child: Text(
-                      'Cancel',
-                      style: TextStyle(
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
+              Column(
+                children: [
                   Padding(
-                    padding: EdgeInsets.only(left: 40.0),
-                  ),
-                  RaisedButton(
-                    elevation: 6.0,
                     padding: EdgeInsets.only(
-                        left: 25.0, top: 10.0, bottom: 10.0, right: 25.0),
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10.0)),
-                    onPressed: () {
-                      nHelper
-                          .updatePhone(myController.text, id,token)
-                          .then((value) {
-                        if (value.statusCode == 200) {
-                          sharedPrefsHelper.savePhone(jsonDecode(value.body)["phone"]);
-                          Scaffold.of(context).showSnackBar(SnackBar(content: Text('Update phone success'),));
-                        } else {
-                          Scaffold.of(context).showSnackBar(SnackBar(content: Text('${value.statusCode}'),));
-                          print(value.statusCode);
-                        }
-                      });
-                    },
-                    child: Text(
-                      'Save',
-                      style: TextStyle(
-                        color: Colors.white,
-                      ),
-                    ),
+                        left: 15.0, top: 40.0, bottom: 10.0, right: 15.0),
+                    child: InputField('Update Phone', myController),
                   ),
                 ],
               ),
             ],
           ),
+          SizedBox(
+            height: 50.0,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              RaisedButton(
+                onPressed: () {
+                  myController.clear();
+                },
+                elevation: 6.0,
+                padding: EdgeInsets.only(
+                    left: 25.0, top: 10.0, bottom: 10.0, right: 25.0),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10.0)),
+                color: Colors.grey,
+                child: Text(
+                  'Cancel',
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.only(left: 40.0),
+              ),
+              RaisedButton(
+                elevation: 6.0,
+                padding: EdgeInsets.only(
+                    left: 25.0, top: 10.0, bottom: 10.0, right: 25.0),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10.0)),
+                onPressed: () {
+                  nHelper
+                      .updatePhone(myController.text, id, token)
+                      .then((value) {
+                    if (value.statusCode == 200) {
+                      sharedPrefsHelper
+                          .savePhone(jsonDecode(value.body)["phone"]);
+                      Scaffold.of(context).showSnackBar(SnackBar(
+                        content: Text('Update phone success'),
+                      ));
+                    } else {
+                      Scaffold.of(context).showSnackBar(SnackBar(
+                        content: Text('${value.statusCode}'),
+                      ));
+                      print(value.statusCode);
+                    }
+                  });
+                  sharedPrefsHelper.saveImage(_image.path);
+                  nHelper.updateImage(id, token).then((value) {
+                    if (value.statusCode == 200) {
+                      sharedPrefsHelper.saveImage(
+                          jsonDecode(value.body)["image"]);
+                      Scaffold.of(context).showSnackBar(SnackBar(
+                        content: Text('Update Image success'),
+                      ));
+                      print(value.statusCode);
+                    } else {
+                      Scaffold.of(context).showSnackBar(SnackBar(
+                        content: Text('${value.statusCode}'),
+                      ));
+                      print(value.statusCode);
+                    }
+                  });
+                },
+                child: Text(
+                  'Save',
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
     );
   }
 }
+

@@ -15,6 +15,9 @@ class _InputFieldState extends State<InputField> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      style: TextStyle(
+        color: Colors.black,
+      ),
       controller: widget.myController,
       decoration: InputDecoration(
         enabledBorder: OutlineInputBorder(
