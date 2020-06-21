@@ -144,7 +144,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                     );
                                   } else {
                                     return CircleAvatar(
-                                      backgroundImage: AssetImage("image/pic.png"),
+                                      backgroundImage: AssetImage("image/profile.png"),
                                     );
                                   }
                                 }),
