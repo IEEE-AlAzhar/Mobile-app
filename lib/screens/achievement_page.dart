@@ -17,29 +17,40 @@ class AchievementsPage extends StatelessWidget {
         child: ListView.builder(
             itemCount: nHelper.ache.length,
             itemBuilder: (context, index) {
-              return Card(
-                  margin: EdgeInsets.all(10.0),
-                  child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                    Container(
-                      width: 100.0,
-                      height: 100.0,
-                      child: (Image.network("${nHelper.ache[index].achCover}")),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(left: 10.0),
-                    ),
-                    Expanded(
-                        child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                          Text("${nHelper.ache[index].achTit}",style: TextStyle(fontWeight: FontWeight.bold)),
-                          Text("${nHelper.ache[index].achDesc}"),
-                          Text("${nHelper.ache[index].achDate}"),
-                        ]))
-                  ]));
-            }),
+              if(nHelper.ache.isEmpty){
+                return Center(
+                      child: Text ("You Don't have Achievements yet!" ,
+                        style: TextStyle(
+                          color: Colors.black,
+                            fontSize: 20.0,fontWeight: FontWeight.bold),),
+                   );
+              }else{
+                return Card(
+                    margin: EdgeInsets.all(10.0),
+                    child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Container(
+                            width: 100.0,
+                            height: 100.0,
+                            child: (Image.network("${nHelper.ache[index]
+                                .achCover}")),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.only(left: 10.0),
+                          ),
+                          Expanded(
+                              child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: <Widget>[
+                                    Text("${nHelper.ache[index].achTit}",
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold)),
+                                    Text("${nHelper.ache[index].achDesc}"),
+                                    Text("${nHelper.ache[index].achDate}"),
+                                  ]))
+                        ]));
+              }}),
       ),
     );
   }
