@@ -26,6 +26,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
 
 
   TextEditingController myController = new TextEditingController();
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
@@ -53,55 +54,55 @@ class _SettingsScreenState extends State<SettingsScreen> {
       });
     });
   }
+  Future getImageFromCamera() async {
+    var image = await ImagePicker.pickImage(source: ImageSource.camera);
+    setState(() {
+      _image = image;
+    });
+  }
+
+  Future getImageFromGallery() async {
+    var image = await ImagePicker.pickImage(source: ImageSource.gallery);
+    setState(() {
+      _image = image;
+    });
+  }
+
+  Future<void> _showChoiceDialog() {
+    return showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text('Select Your Choice'),
+            content: SingleChildScrollView(
+              child: ListBody(
+                children: <Widget>[
+                  GestureDetector(
+                    child: Text('🖼 Pick from gallery'),
+                    onTap: () {
+                      getImageFromGallery();
+                    },
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(top: 30.0),
+                    child: GestureDetector(
+                      child: Text('📷 Take picture'),
+                      onTap: () {
+                        getImageFromCamera();
+                      },
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          );
+        });
+  }
 
   @override
   Widget build(BuildContext context) {
-    Future getImageFromCamera() async {
-      var image = await ImagePicker.pickImage(source: ImageSource.camera);
-      setState(() {
-        _image = image;
-      });
-    }
-
-    Future getImageFromGallery() async {
-      var image = await ImagePicker.pickImage(source: ImageSource.gallery);
-      setState(() {
-        _image = image;
-      });
-    }
-
-    Future<void> _showChoiceDialog() {
-      return showDialog(
-          context: context,
-          builder: (BuildContext context) {
-            return AlertDialog(
-              title: Text('Select Your Choice'),
-              content: SingleChildScrollView(
-                child: ListBody(
-                  children: <Widget>[
-                    GestureDetector(
-                      child: Text('🖼 Pick from gallery'),
-                      onTap: () {
-                        getImageFromGallery();
-                      },
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(top: 30.0),
-                      child: GestureDetector(
-                        child: Text('📷 Take picture'),
-                        onTap: () {
-                          getImageFromCamera();
-                        },
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            );
-          });
-    }
-
     return Scaffold(
+      key: _scaffoldKey,
       appBar: AppBar(
         title: Text('Settings'),
         centerTitle: true,
@@ -224,11 +225,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     if (value.statusCode == 200) {
                       sharedPrefsHelper
                           .savePhone(jsonDecode(value.body)["phone"]);
-                      Scaffold.of(context).showSnackBar(SnackBar(
-                        content: Text('Update phone success'),
+                      _scaffoldKey.currentState.showSnackBar(SnackBar(
+                        content: Text('Updated phone number successfully'),
                       ));
                     } else {
-                      Scaffold.of(context).showSnackBar(SnackBar(
+                      _scaffoldKey.currentState.showSnackBar(SnackBar(
                         content: Text('${value.statusCode}'),
                       ));
                       print(value.statusCode);
@@ -239,12 +240,12 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     if (value.statusCode == 200) {
                       sharedPrefsHelper.saveImage(
                           jsonDecode(value.body)["image"]);
-                      Scaffold.of(context).showSnackBar(SnackBar(
-                        content: Text('Update Image success'),
+                      _scaffoldKey.currentState.showSnackBar(SnackBar(
+                        content: Text('Updated Image successfully'),
                       ));
                       print(value.statusCode);
                     } else {
-                      Scaffold.of(context).showSnackBar(SnackBar(
+                      _scaffoldKey.currentState.showSnackBar(SnackBar(
                         content: Text('${value.statusCode}'),
                       ));
                       print(value.statusCode);
@@ -263,6 +264,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
         ],
       ),
     );
+  }
+  void dispose(){
+    myController.dispose();
+    super.dispose();
   }
 }
 
