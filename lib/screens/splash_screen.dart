@@ -30,7 +30,7 @@ class _SplashScreen extends State<SplashScreen> with TickerProviderStateMixin {
     const duration = Duration(milliseconds: 3000);
     Timer(duration, () {
       Navigator.of(context).pushReplacement(
-           MaterialPageRoute(builder: (context) => LoginPage()));
+          MaterialPageRoute(builder: (context) => LoginPage()));
     });
   }
 

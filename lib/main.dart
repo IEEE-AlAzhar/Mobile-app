@@ -18,11 +18,11 @@ import 'screens/login_page.dart';
 DarkThemeProvider themeChangeProvider = new DarkThemeProvider();
 
 void main() => runApp(ChangeNotifierProvider(
-      create: (context) {
-        return themeChangeProvider;
-      },
-      child: Consumer<DarkThemeProvider>(
-          builder: (BuildContext context, value, Widget child) {
+  create: (context) {
+    return themeChangeProvider;
+  },
+  child: Consumer<DarkThemeProvider>(
+      builder: (BuildContext context, value, Widget child) {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
           title: "IEEE AL-AZHAR SB APP",
@@ -39,4 +39,4 @@ void main() => runApp(ChangeNotifierProvider(
           },
         );
       }),
-    ));
+));

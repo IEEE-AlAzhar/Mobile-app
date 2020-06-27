@@ -21,7 +21,6 @@ class SharedPrefsHelper {
     final value = sharedPrefs.get(key);
     return value;
   }
-
   saveName(String name) async {
     final sharedPrefs = await SharedPreferences.getInstance();
     var key = 'name';
@@ -73,5 +72,29 @@ class SharedPrefsHelper {
     final value = sharedPrefs.get(key);
     return value;
   }
+  saveId(String id) async {
+    final sharedPrefs = await SharedPreferences.getInstance();
+    var key = '_id';
+    sharedPrefs.setString(key, id);
+  }
 
+  Future<String> readId() async {
+    final sharedPrefs = await SharedPreferences.getInstance();
+    var key = '_id';
+    final value = sharedPrefs.get(key);
+    return value;
+  }
+
+  savePhone(String phone) async {
+    final sharedPrefs = await SharedPreferences.getInstance();
+    var key = 'phone';
+    sharedPrefs.setString(key, phone);
+  }
+
+  Future<String> readPhone() async {
+    final sharedPrefs = await SharedPreferences.getInstance();
+    var key = 'phone';
+    final value = sharedPrefs.get(key);
+    return value;
+  }
 }
