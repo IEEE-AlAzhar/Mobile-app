@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ieeeapp/constants.dart';
 import 'package:ieeeapp/models/themes.dart';
 import 'package:ieeeapp/screens/profile_page.dart';
 import 'package:ieeeapp/screens/settings_page.dart';
@@ -44,26 +45,13 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
           child: Column(
             children: <Widget>[
               Container(
+                height: 300.0,
                 width: double.infinity,
                 padding: EdgeInsets.all(20.0),
                 color:
                     themeChange.darkTheme ? Colors.blueGrey : Colors.blue[300],
                 child: Center(
-                  child: Column(
-                    children: <Widget>[
-                      CircleAvatar(
-                        backgroundImage: AssetImage(''),
-                        radius: 70.0,
-                      ),
-                      Text(
-                        'user name',
-                        style: TextStyle(
-                          fontSize: 20,
-                          color: Colors.black,
-                        ),
-                      )
-                    ],
-                  ),
+                  child: Text("IEEE AL-AZHAR",style: titleStyle,),
                 ),
               ),
               ListTile(
@@ -83,10 +71,12 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
               ),
               ListTile(
                 leading: Icon(
-                  Icons.brightness_6,
+                  themeChange.darkTheme?
+                  Icons.wb_sunny : Icons.brightness_3
                 ),
                 title: Text(
-                  'Night mood',
+                  themeChange.darkTheme?
+                  'Light mood' : "Night mood",
                   style: TextStyle(
                     fontSize: 18,
                   ),
@@ -132,6 +122,8 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
                     if (val.statusCode == 200) {
                       token = '0';
                       shared.saveToken(token);
+                      net.feedBack.clear();
+                      net.ache.clear();
                       Navigator.pushReplacement(context,
                           MaterialPageRoute(builder: (context) {
                         return LoginPage();

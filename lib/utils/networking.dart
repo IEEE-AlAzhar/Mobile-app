@@ -51,18 +51,22 @@ class NetworkHelper {
       List feed = (jsonDecode(response.body)["user"]["feedbacks"]);
       sharedPrefsHelper.saveId(jsonDecode(response.body)["user"]["_id"]);
       sharedPrefsHelper.savePhone(jsonDecode(response.body)["user"]["phone"]);
-
-      for (var item in ach) {
-        ache.add(Achievements(achTit: item["title"],
-            achDesc: item["description"],
-            achDate: item["date"],
-            achCover: item["cover"]));
+      if(ach.isNotEmpty) {
+        print("okkk1");
+        for (var item in ach) {
+          ache.add(Achievements(achTit: item["title"],
+              achDesc: item["description"],
+              achDate: item["date"],
+              achCover: item["cover"]));
+        }
       }
-
-      for (var item in feed) {
-        feedBack.add(Feedback(fedTit: item["title"],
-            fedBody: item["body"],
-            fedDate: item["date"]));
+      if(feed.isNotEmpty) {
+        print("okkk2");
+        for (var item in feed) {
+          feedBack.add(Feedback(fedTit: item["title"],
+              fedBody: item["body"],
+              fedDate: item["date"]));
+        }
       }
     }
     return response;
