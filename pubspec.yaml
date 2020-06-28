@@ -34,6 +34,8 @@ dependencies:
   flushbar: ^1.10.0
   provider: ^4.0.5+1
   intl: ^0.16.1
+  dio: ^3.0.9
+
 
 
 

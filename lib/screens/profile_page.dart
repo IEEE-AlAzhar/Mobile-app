@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ieeeapp/models/themes.dart';
 import 'package:ieeeapp/screens/achievement_page.dart';
@@ -25,21 +26,27 @@ class _ProfilePageState extends State<ProfilePage> {
           decoration: BoxDecoration(
               color:
                   themeChange.darkTheme ? Colors.blueGrey : Colors.blue[100]),
-          height: 350.0,
+          height: 400.0,
           width: double.infinity,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               CircleAvatar(
-                child: FutureBuilder(
-                    future: sharedPrefsHelper.readImage(),
-                    builder: (_, snapshot) {
-                      if (snapshot.hasData) {
-                        return Image.network('${snapshot.data}');
-                      } else {
-                        return Text("${snapshot.error}");
-                      }
-                    }),
+                child: ClipOval(
+                  child: SizedBox(
+                    height: 180.0,
+                    width: 180.0,
+                    child: FutureBuilder(
+                        future: sharedPrefsHelper.readImage(),
+                        builder: (_, snapshot) {
+                          if (snapshot.hasData) {
+                            return Image.network('${snapshot.data}',fit: BoxFit.fill,);
+                          } else {
+                            return Text("${snapshot.error}");
+                          }
+                        }),
+                  ),
+                ),
                 radius: 70.0,
               ),
               Padding(padding: EdgeInsets.only(top: 10.0)),

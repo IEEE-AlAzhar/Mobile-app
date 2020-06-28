@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:ieeeapp/utils/networking.dart';
 import 'package:ieeeapp/widgets/input_field.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:modal_progress_hud/modal_progress_hud.dart';
 
 
 
@@ -23,8 +24,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
   String token = '';
   String id = '';
   String _imagepath;
-
-
+  String phoneInit;
+  bool _spin =false;
   TextEditingController myController = new TextEditingController();
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 
@@ -45,6 +46,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
     });
     sharedPrefsHelper.readPhone().then((value) {
       setState(() {
+        phoneInit =value;
         myController.text = value;
       });
     });
@@ -59,6 +61,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
     setState(() {
       _image = image;
     });
+    Navigator.pop(context);
   }
 
   Future getImageFromGallery() async {
@@ -66,6 +69,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
     setState(() {
       _image = image;
     });
+    Navigator.pop(context);
   }
 
   Future<void> _showChoiceDialog() {
@@ -107,161 +111,190 @@ class _SettingsScreenState extends State<SettingsScreen> {
         title: Text('Settings'),
         centerTitle: true,
       ),
-      body: ListView(
-        children: <Widget>[
-          Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: <Widget>[
-              SizedBox(
-                height: 60.0,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Align(
-                    alignment: Alignment.center,
-                    child: Padding(
-                      padding: EdgeInsets.only(left: 40.0),
-                       child :CircleAvatar(
-                          backgroundColor: Colors.white,
-                         backgroundImage: FileImage(File(_imagepath)),
-                        radius: 100.0,
-                        child: ClipOval(
-                          child: SizedBox(
-                            height: 180.0,
-                            width: 180.0,
-                            child: FutureBuilder(
-                                future: sharedPrefsHelper.readImage(),
-                                builder: (_, snapshot) {
-                                  if (snapshot.hasData) {
-                                    return _image != null
-                                        ? Image.file(
-                                      _image,
-                                      fit: BoxFit.fill,
-                                    )
-                                        : Image.network(
-                                      snapshot.data,
-                                      fit: BoxFit.fill,
-                                    );
-                                  } else {
-                                    return CircleAvatar(
-                                      backgroundImage: AssetImage("image/profile.png"),
-                                    );
-                                  }
-                                }),
+      body: ModalProgressHUD(
+        inAsyncCall: _spin,
+        child: ListView(
+          children: <Widget>[
+            Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: <Widget>[
+                SizedBox(
+                  height: 60.0,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Align(
+                      alignment: Alignment.center,
+                      child: Padding(
+                        padding: EdgeInsets.only(left: 40.0),
+                         child :CircleAvatar(
+                            backgroundColor: Colors.white,
+                           backgroundImage: FileImage(File(_imagepath)),
+                          radius: 100.0,
+                          child: ClipOval(
+                            child: SizedBox(
+                              height: 180.0,
+                              width: 180.0,
+                              child: FutureBuilder(
+                                  future: sharedPrefsHelper.readImage(),
+                                  builder: (_, snapshot) {
+                                    if (snapshot.hasData) {
+                                      return _image != null
+                                          ? Image.file(
+                                        _image,
+                                        fit: BoxFit.fill,
+                                      )
+                                          : Image.network(
+                                        snapshot.data,
+                                        fit: BoxFit.fill,
+                                      );
+                                    } else {
+                                      return CircleAvatar(
+                                        backgroundImage: AssetImage("image/profile.png"),
+                                      );
+                                    }
+                                  }),
+                            ),
                           ),
                         ),
                       ),
                     ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(
-                      top: 100.0,
-                    ),
-                    child: FloatingActionButton(
-                      backgroundColor: Colors.white,
-                      onPressed: () {
-                        _showChoiceDialog();
-                      },
-                      child: Icon(
-                        Icons.photo_camera,
-                        color: Colors.blue[300],
-                        size: 30.0,
+                    Padding(
+                      padding: EdgeInsets.only(
+                        top: 100.0,
+                      ),
+                      child: FloatingActionButton(
+                        backgroundColor: Colors.white,
+                        onPressed: () {
+                          _showChoiceDialog();
+                        },
+                        child: Icon(
+                          Icons.photo_camera,
+                          color: Colors.blue[300],
+                          size: 30.0,
+                        ),
                       ),
                     ),
-                  ),
-                ],
-              ),
-              Padding(
-                padding: EdgeInsets.all(25.0),
-              ),
-              Column(
-                children: [
-                  Padding(
-                    padding: EdgeInsets.only(
-                        left: 15.0, top: 40.0, bottom: 10.0, right: 15.0),
-                    child: InputField('Update Phone', myController),
-                  ),
-                ],
-              ),
-            ],
-          ),
-          SizedBox(
-            height: 50.0,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              RaisedButton(
-                onPressed: () {
-                  myController.clear();
-                },
-                elevation: 6.0,
-                padding: EdgeInsets.only(
-                    left: 25.0, top: 10.0, bottom: 10.0, right: 25.0),
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10.0)),
-                color: Colors.grey,
-                child: Text(
-                  'Cancel',
-                  style: TextStyle(
-                    color: Colors.white,
+                  ],
+                ),
+                Padding(
+                  padding: EdgeInsets.all(25.0),
+                ),
+                Column(
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.only(
+                          left: 15.0, top: 40.0, bottom: 10.0, right: 15.0),
+                      child: InputField('Update Phone', myController),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+            SizedBox(
+              height: 50.0,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                RaisedButton(
+                  onPressed: () {
+                    myController.clear();
+                  },
+                  elevation: 6.0,
+                  padding: EdgeInsets.only(
+                      left: 25.0, top: 10.0, bottom: 10.0, right: 25.0),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10.0)),
+                  color: Colors.grey,
+                  child: Text(
+                    'Cancel',
+                    style: TextStyle(
+                      color: Colors.white,
+                    ),
                   ),
                 ),
-              ),
-              Padding(
-                padding: EdgeInsets.only(left: 40.0),
-              ),
-              RaisedButton(
-                elevation: 6.0,
-                padding: EdgeInsets.only(
-                    left: 25.0, top: 10.0, bottom: 10.0, right: 25.0),
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10.0)),
-                onPressed: () {
-                  nHelper
-                      .updatePhone(myController.text, id, token)
-                      .then((value) {
-                    if (value.statusCode == 200) {
-                      sharedPrefsHelper
-                          .savePhone(jsonDecode(value.body)["phone"]);
-                      _scaffoldKey.currentState.showSnackBar(SnackBar(
-                        content: Text('Updated phone number successfully'),
-                      ));
-                    } else {
-                      _scaffoldKey.currentState.showSnackBar(SnackBar(
-                        content: Text('${value.statusCode}'),
-                      ));
-                      print(value.statusCode);
+                Padding(
+                  padding: EdgeInsets.only(left: 40.0),
+                ),
+                RaisedButton(
+                  elevation: 6.0,
+                  padding: EdgeInsets.only(
+                      left: 25.0, top: 10.0, bottom: 10.0, right: 25.0),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10.0)),
+                  onPressed: () {
+
+                    if(myController.text != phoneInit ){
+                      setState(() {
+                        _spin= true;
+                      });
+                    nHelper
+                        .updatePhone(myController.text, id, token)
+                        .then((value) {
+                      if (value.statusCode == 200) {
+                        setState(() {
+                          _spin= false;
+                        });
+                        sharedPrefsHelper
+                            .savePhone(jsonDecode(value.body)["phone"]);
+                        _scaffoldKey.currentState.showSnackBar(SnackBar(
+                          content: Text('Updated phone number successfully'),
+                        ));
+                      } else {
+                        setState(() {
+                          _spin= false;
+                        });
+                        _scaffoldKey.currentState.showSnackBar(SnackBar(
+                          content: Text('${value.statusCode}'),
+                        ));
+                        print(value.statusCode);
+                      }
+                    });
                     }
-                  });
-                  sharedPrefsHelper.saveImage(_image.path);
-                  nHelper.updateImage(id, token).then((value) {
-                    if (value.statusCode == 200) {
-                      sharedPrefsHelper.saveImage(
-                          jsonDecode(value.body)["image"]);
-                      _scaffoldKey.currentState.showSnackBar(SnackBar(
-                        content: Text('Updated Image successfully'),
-                      ));
-                      print(value.statusCode);
-                    } else {
-                      _scaffoldKey.currentState.showSnackBar(SnackBar(
-                        content: Text('${value.statusCode}'),
-                      ));
-                      print(value.statusCode);
+                    if(_image!=null){
+                      setState(() {
+                        _spin= true;
+                      });
+                    nHelper.updateImage(id, token,_image).then((value) {
+                      if (value.statusCode == 200) {
+                        setState(() {
+                          _spin= false;
+                        });
+                        print("updated photo");
+                        print("$value");
+                        String val =value.toString();
+                        String newImage = val.substring(10,val.length-2);
+                        sharedPrefsHelper.saveImage(newImage);
+                        _scaffoldKey.currentState.showSnackBar(SnackBar(
+                          content: Text('Updated Image successfully'),
+                        ));
+                        print(value.statusCode);
+                      } else {
+                        setState(() {
+                          _spin= false;
+                        });
+                        _scaffoldKey.currentState.showSnackBar(SnackBar(
+                          content: Text('${value.statusCode}'),
+                        ));
+                        print(value.statusCode);
+                      }
+                    });
+                    _image =null;
                     }
-                  });
-                },
-                child: Text(
-                  'Save',
-                  style: TextStyle(
-                    color: Colors.white,
+                  },
+                  child: Text(
+                    'Save',
+                    style: TextStyle(
+                      color: Colors.white,
+                    ),
                   ),
                 ),
-              ),
-            ],
-          ),
-        ],
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }

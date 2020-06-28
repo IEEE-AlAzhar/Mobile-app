@@ -105,14 +105,20 @@ class _LoginPageState extends State<LoginPage> {
                       });
                       nHelper.login(textEditingController.text).then((val) {
                         if (val.statusCode == 200) {
-                          Navigator.of(context).pushNamed(HomeScreen.id);
+                          Navigator.of(context).pushReplacement(
+                              MaterialPageRoute(
+                                  builder: (context) => HomeScreen()));
+                          textEditingController.clear();
+                          setState(() {
+                            showSpinner = false;
+                          });
                         } else {
                           setState(() {
                             showSpinner = false;
                           });
 
                           final snackBar =
-                          SnackBar(content: Text('Incorrect code'));
+                              SnackBar(content: Text('Incorrect code'));
                           _scaffoldKey.currentState.showSnackBar(snackBar);
                         }
                       });
@@ -126,6 +132,7 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   void dispose() {
+    textEditingController.clear();
     textEditingController.dispose();
     super.dispose();
   }
