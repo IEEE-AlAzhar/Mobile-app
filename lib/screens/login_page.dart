@@ -3,7 +3,6 @@ import 'package:ieeeapp/constants.dart';
 import 'package:ieeeapp/screens/home_page.dart';
 import 'package:ieeeapp/utils/networking.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
-
 import 'home_page.dart';
 
 NetworkHelper nHelper = NetworkHelper();

@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-
 import 'package:ieeeapp/screens/achievement_page.dart';
 import 'package:ieeeapp/screens/feedback_page.dart';
-import 'package:ieeeapp/screens/announcement_details.dart';
 import 'package:ieeeapp/screens/home_page.dart';
 import 'package:ieeeapp/screens/login_page.dart';
 import 'package:ieeeapp/screens/profile_page.dart';

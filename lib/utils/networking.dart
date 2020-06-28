@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
-
 import 'package:dio/dio.dart' as Dio;
 import 'package:http/http.dart' as http;
 import 'package:ieeeapp/models/achievement.dart';
@@ -10,14 +9,13 @@ import 'package:http_parser/http_parser.dart';
 import 'shared_pref.dart';
 
 const loginURL = "https://ieee-mobile-dashboard.herokuapp.com/api/users/login";
-const updatePhoneUrl = 'https://ieee-mobile-dashboard.herokuapp.com/api/users/';
+const updateUrl = 'https://ieee-mobile-dashboard.herokuapp.com/api/users/';
 
 const logoutURL =
     "https://ieee-mobile-dashboard.herokuapp.com/api/users/logout";
 const annoucementsURL =
     "https://ieee-mobile-dashboard.herokuapp.com/api/announcements/list";
 
-const updateImageUrl = "https://ieee-mobile-dashboard.herokuapp.com/api/users/";
 
 SharedPrefsHelper sharedPrefsHelper = SharedPrefsHelper();
 
@@ -109,7 +107,7 @@ class NetworkHelper {
       "Accept": "application/json",
     };
     var body = jsonEncode({"phone": "$phone"});
-    var response = await http.put("$updatePhoneUrl/$id/phone",
+    var response = await http.put("$updateUrl/$id/phone",
         headers: headers, body: body);
     if (response.statusCode == 200) {
       return response;
@@ -118,43 +116,6 @@ class NetworkHelper {
     }
     return response;
   }
-
-  /* Future<http.Response> updateImage(String id, String token) async{
-    Map<String , String> headers = {
-      "x-access-token": "$token",
-      "Content-Type": "multipart/form-data",
-      "Accept": "multipart/form-data",
-    };
-    var body = jsonEncode(ImageFile);
-    var response = await http.put("$updateImageUrl/$id/image",headers: headers,body: body);
-    if(response.statusCode==200){
-      return response;
-    }
-    else{
-      print('${response.statusCode}');
-    }
-    return response;
-  }*/
-  /* Future<http.Response> updateImage(String id, String token, File imageFile) {
-    if (imageFile != null) {
-      String base64Image = base64Encode(imageFile.readAsBytesSync());
-     // String fileName = imageFile.path.split("/").last;
-      Map<String , String> headers = {
-        "x-access-token": "$token",
-        "Content-Type": "multipart/form-data",
-        "Accept": "multipart/form-data",
-      };
-
-     var response=  http.put("$updateImageUrl/$id/image",headers: headers, body: base64Image).then((res) {
-        print(res.statusCode);
-      }).catchError((err) {
-        print(err);
-      });
-
-     return response;
-    }else{
-      print("Null File");
-    }*/
 
   Future<Dio.Response> updateImage(
       String id, String token, File imageFile) async {
@@ -170,7 +131,7 @@ class NetworkHelper {
         "image": await Dio.MultipartFile.fromFile(imageFile.path,
             filename: fileName,contentType: MediaType("image","png"))
       });
-      Dio.Response response = await dio.put("$updateImageUrl/$id/image",
+      Dio.Response response = await dio.put("$updateUrl/$id/image",
           options: Dio.Options(headers: headers),data: formData);
       return response;
     } else {
