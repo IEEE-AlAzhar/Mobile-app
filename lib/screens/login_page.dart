@@ -99,9 +99,11 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                     ),
                     onPressed: () {
-                      setState(() {
-                        showSpinner = true;
-                      });
+
+                      if(textEditingController.text.isNotEmpty){
+                        setState(() {
+                          showSpinner = true;
+                        });
                       nHelper.login(textEditingController.text).then((val) {
                         if (val.statusCode == 200) {
                           Navigator.of(context).pushReplacement(
@@ -121,6 +123,12 @@ class _LoginPageState extends State<LoginPage> {
                           _scaffoldKey.currentState.showSnackBar(snackBar);
                         }
                       });
+
+                      }else{
+                        final snackBar =
+                        SnackBar(content: Text('Empty field'));
+                        _scaffoldKey.currentState.showSnackBar(snackBar);
+                      }
                     },
                   ),
                 ],
