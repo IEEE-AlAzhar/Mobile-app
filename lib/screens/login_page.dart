@@ -72,8 +72,6 @@ class _LoginPageState extends State<LoginPage> {
                     child: TextField(
                       style: TextStyle(fontSize: 20),
                       controller: textEditingController,
-//                    obscureText: true,
-//                    autofocus: true,
                       decoration: InputDecoration(
                         border: OutlineInputBorder(),
                         labelText: 'your code',
@@ -106,13 +104,13 @@ class _LoginPageState extends State<LoginPage> {
                         });
                       nHelper.login(textEditingController.text).then((val) {
                         if (val.statusCode == 200) {
+                          setState(() {
+                            showSpinner = false;
+                          });
                           Navigator.of(context).pushReplacement(
                               MaterialPageRoute(
                                   builder: (context) => HomeScreen()));
                           textEditingController.clear();
-                          setState(() {
-                            showSpinner = false;
-                          });
                         } else {
                           setState(() {
                             showSpinner = false;
@@ -139,7 +137,6 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   void dispose() {
-    textEditingController.clear();
     textEditingController.dispose();
     super.dispose();
   }
