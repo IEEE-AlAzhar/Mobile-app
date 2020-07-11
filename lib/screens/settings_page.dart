@@ -199,26 +199,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 RaisedButton(
-                  onPressed: () {
-                    myController.clear();
-                  },
-                  elevation: 6.0,
-                  padding: EdgeInsets.only(
-                      left: 25.0, top: 10.0, bottom: 10.0, right: 25.0),
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10.0)),
-                  color: Colors.grey,
-                  child: Text(
-                    'Cancel',
-                    style: TextStyle(
-                      color: Colors.white,
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(left: 40.0),
-                ),
-                RaisedButton(
                   elevation: 6.0,
                   padding: EdgeInsets.only(
                       left: 25.0, top: 10.0, bottom: 10.0, right: 25.0),
