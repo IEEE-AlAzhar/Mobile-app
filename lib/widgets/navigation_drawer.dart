@@ -52,7 +52,27 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
                 color:
                     themeChange.darkTheme ? Colors.blueGrey : Colors.blue[300],
                 child: Center(
-                  child: Text("IEEE AL-AZHAR",style: titleStyle,),
+                  child:ClipOval(
+                    child: SizedBox(
+                      height: 180.0,
+                      width: 180.0,
+                      child: FutureBuilder(
+                          future: shared.readImage(),
+                          builder: (_, snapshot) {
+                            if (snapshot.hasData) {
+                              return  Image.network(
+                                snapshot.data,
+                                fit: BoxFit.fill,
+                              );
+                            } else {
+                              return CircleAvatar(
+                                backgroundImage: AssetImage("image/profile.png"),
+                              );
+                            }
+                          }),
+                    ),
+                  ),
+                  //Text("IEEE AL-AZHAR",style: titleStyle,),
                 ),
               ),
               ListTile(
