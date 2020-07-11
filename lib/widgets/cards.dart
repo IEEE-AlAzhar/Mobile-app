@@ -29,7 +29,7 @@ newEvent(Announcement announcement) {
             padding: const EdgeInsets.only(bottom: 11, left: 15),
             child: Text(
               formattedDate,
-              style: TextStyle(fontSize: 15, color: Colors.grey[700]),
+              style: TextStyle(fontSize: 15, ),
             ),
           ),
         ],
@@ -57,7 +57,7 @@ oldEvent(Announcement announcement) {
       ),
       subtitle: Padding(
         padding: const EdgeInsets.only(top: 9, bottom: 5),
-        child: Text(formattedDate),
+        child: Text(formattedDate,  style: TextStyle(fontSize: 15,),),
       ),
     ),
   );

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ieeeapp/constants.dart';
 import 'package:ieeeapp/models/themes.dart';
+import 'package:ieeeapp/screens/login_page2.dart';
 import 'package:ieeeapp/screens/profile_page.dart';
 import 'package:ieeeapp/screens/settings_page.dart';
 import 'package:provider/provider.dart';
@@ -126,7 +127,7 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
                       net.ache.clear();
                       Navigator.pushReplacement(context,
                           MaterialPageRoute(builder: (context) {
-                        return LoginPage();
+                        return LoginPagen();
                       }));
                     } else {
                       setState(() {

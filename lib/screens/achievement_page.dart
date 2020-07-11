@@ -55,7 +55,7 @@ class AchievementsPage extends StatelessWidget {
         Center(
           child: Text ("You Don't have Achievements yet!" ,
             style: TextStyle(
-                color: Colors.black,
+                color: themeChange.darkTheme ? Colors.white : Colors.black,
                 fontSize: 20.0,fontWeight: FontWeight.bold),),
         ),
       ),

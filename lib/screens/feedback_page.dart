@@ -42,7 +42,7 @@ class FeedbackPage extends StatelessWidget {
           child: Text(
             "You Don't have Feedback yet!",
             style: TextStyle(
-                color: Colors.black,
+                color: themeChange.darkTheme ? Colors.white : Colors.black,
                 fontSize: 20.0,
                 fontWeight: FontWeight.bold),
           ),

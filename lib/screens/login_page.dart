@@ -16,7 +16,7 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   TextEditingController textEditingController = TextEditingController();
-  bool showSpinner = false;
+  bool _showSpinner = false;
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 
   @override
@@ -24,7 +24,7 @@ class _LoginPageState extends State<LoginPage> {
     return Scaffold(
         key: _scaffoldKey,
         body: ModalProgressHUD(
-          inAsyncCall: showSpinner,
+          inAsyncCall: _showSpinner,
           child: Container(
             decoration: BoxDecoration(
               gradient: LinearGradient(begin: Alignment.topCenter, colors: [
@@ -100,27 +100,27 @@ class _LoginPageState extends State<LoginPage> {
 
                       if(textEditingController.text.isNotEmpty){
                         setState(() {
-                          showSpinner = true;
+                          _showSpinner = true;
                         });
-                      nHelper.login(textEditingController.text).then((val) {
-                        if (val.statusCode == 200) {
-                          setState(() {
-                            showSpinner = false;
-                          });
-                          Navigator.of(context).pushReplacement(
-                              MaterialPageRoute(
-                                  builder: (context) => HomeScreen()));
-                          textEditingController.clear();
-                        } else {
-                          setState(() {
-                            showSpinner = false;
-                          });
+                        nHelper.login(textEditingController.text).then((val) {
+                          if (val.statusCode == 200) {
+                            setState(() {
+                              _showSpinner = false;
+                            });
+                            Navigator.of(context).pushReplacement(
+                                MaterialPageRoute(
+                                    builder: (context) => HomeScreen()));
+                            textEditingController.clear();
+                          } else {
+                            setState(() {
+                              _showSpinner = false;
+                            });
 
-                          final snackBar =
-                              SnackBar(content: Text('Incorrect code'));
-                          _scaffoldKey.currentState.showSnackBar(snackBar);
-                        }
-                      });
+                            final snackBar =
+                            SnackBar(content: Text('Incorrect code'));
+                            _scaffoldKey.currentState.showSnackBar(snackBar);
+                          }
+                        });
 
                       }else{
                         final snackBar =

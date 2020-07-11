@@ -6,6 +6,7 @@ import 'package:ieeeapp/models/themes.dart';
 import 'package:ieeeapp/screens/home_page.dart';
 import 'package:ieeeapp/screens/login_page.dart';
 import 'package:ieeeapp/utils/shared_pref.dart';
+import 'login_page2.dart';
 
 
 class SplashScreen extends StatefulWidget {
@@ -38,7 +39,7 @@ class _SplashScreen extends State<SplashScreen> with TickerProviderStateMixin {
       }else{
         Timer(duration, () {
           Navigator.of(context).pushReplacement(
-              MaterialPageRoute(builder: (context) => LoginPage()));
+              MaterialPageRoute(builder: (context) => LoginPagen()));
         });
       }
     });
