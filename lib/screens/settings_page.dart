@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:ieeeapp/main.dart';
 import 'package:ieeeapp/utils/networking.dart';
 import 'package:ieeeapp/widgets/input_field.dart';
 import 'package:image_picker/image_picker.dart';
@@ -199,6 +200,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 RaisedButton(
+                  color: themeChangeProvider.darkTheme ? Colors.blueGrey : Colors.blue[300],
                   elevation: 6.0,
                   padding: EdgeInsets.only(
                       left: 25.0, top: 10.0, bottom: 10.0, right: 25.0),
@@ -206,6 +208,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       borderRadius: BorderRadius.circular(10.0)),
                   onPressed: () {
 
+                    if(myController.text.isEmpty){
+                      _scaffoldKey.currentState.showSnackBar(SnackBar(
+                        content: Text('Empty Field'),
+                      ));
+                    }
                     if(myController.text != phoneInit ){
                       setState(() {
                         _spin= true;

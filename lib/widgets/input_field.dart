@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class InputField extends StatefulWidget {
@@ -15,6 +16,8 @@ class _InputFieldState extends State<InputField> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      maxLength: 11,
+      keyboardType: TextInputType.phone,
       style: TextStyle(
         color: Colors.black,
       ),
@@ -32,7 +35,8 @@ class _InputFieldState extends State<InputField> {
         labelText: widget.label,
         labelStyle: TextStyle(
           color: Colors.blue[300],
-          fontSize: 18.0,
+          fontSize: 20.0,
+          fontWeight: FontWeight.bold
         ),
         focusedBorder: OutlineInputBorder(
           borderSide: BorderSide(
