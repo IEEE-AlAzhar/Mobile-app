@@ -18,9 +18,10 @@ class LoginPagen extends StatefulWidget {
 
 class _LoginPagenState extends State<LoginPagen> {
   TextEditingController _textEditingController = TextEditingController();
-  bool _showSpinner = false;
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
-  bool _obscureText = false;
+  final FocusNode _focusNode = FocusNode();
+  bool _showSpinner = false;
+  bool _obscureText = true;
 
   void _toggle() {
     setState(() {
@@ -61,11 +62,24 @@ class _LoginPagenState extends State<LoginPagen> {
         keyboardType: TextInputType.number,
         obscureText: _obscureText,
         decoration: InputDecoration(
+            focusedBorder: OutlineInputBorder(
+              borderSide: BorderSide(
+                color: Colors.blue[300],
+                width: 2.0,
+              ),
+              borderRadius: BorderRadius.circular(50.0),
+            ) ,
             suffixIcon: iconVisibility,
             hintText: 'Password',
             contentPadding: EdgeInsets.symmetric(horizontal: 25, vertical: 20),
-            border:
-                OutlineInputBorder(borderRadius: BorderRadius.circular(50.0))),
+          enabledBorder: OutlineInputBorder(
+            borderSide: BorderSide(
+              color: Colors.blue[300],
+              width: 2.0,
+            ),
+            borderRadius: BorderRadius.circular(50.0),
+          ),
+          ),
       ),
     );
 
@@ -81,6 +95,7 @@ class _LoginPagenState extends State<LoginPagen> {
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
           onPressed: () {
             if (_textEditingController.text.isNotEmpty) {
+              FocusScope.of(context).requestFocus(new FocusNode());
               setState(() {
                 _showSpinner = true;
               });
@@ -115,20 +130,20 @@ class _LoginPagenState extends State<LoginPagen> {
       key: _scaffoldKey,
       body: ModalProgressHUD(
         inAsyncCall: _showSpinner,
-        child: Padding(
-          padding: EdgeInsets.only(top: 100),
-          child: ListView(
-            shrinkWrap: true,
-            padding: EdgeInsets.symmetric(horizontal: 20),
-            children: <Widget>[
-              logo,
-              SizedBox(
-                height: 50,
-              ),
-              inputPassword,
-              buttonLogin,
-            ],
-          ),
+        child: ListView(
+          shrinkWrap: true,
+          padding: EdgeInsets.only(top: 100,left: 20,right: 20),
+          children: <Widget>[
+            logo,
+            SizedBox(
+              height: 50,
+            ),
+            SizedBox(
+                height: 80,
+                child: inputPassword,
+            ),
+            buttonLogin,
+          ],
         ),
       ),
     ));

@@ -34,8 +34,8 @@ class _ProfilePageState extends State<ProfilePage> {
               CircleAvatar(
                 child: ClipOval(
                   child: SizedBox(
-                    height: 180.0,
-                    width: 180.0,
+                    height: 200.0,
+                    width: 200.0,
                     child: FutureBuilder(
                         future: sharedPrefsHelper.readImage(),
                         builder: (_, snapshot) {
@@ -47,7 +47,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         }),
                   ),
                 ),
-                radius: 70.0,
+                radius: 100.0,
               ),
               Padding(padding: EdgeInsets.only(top: 10.0)),
               FutureBuilder(

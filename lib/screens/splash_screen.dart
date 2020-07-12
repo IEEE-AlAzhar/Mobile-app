@@ -79,10 +79,8 @@ class _SplashScreen extends State<SplashScreen> with TickerProviderStateMixin {
                     fontFamily: "Ewert",
                   ),
                   colors: [
-                    Colors.purple,
-                    Colors.blue,
-                    Colors.yellow,
-                    Colors.red,
+                    Colors.blue[200],
+                    Colors.blueGrey
                   ],
                   textAlign: TextAlign.start,
                   alignment: AlignmentDirectional.topStart),
@@ -93,10 +91,8 @@ class _SplashScreen extends State<SplashScreen> with TickerProviderStateMixin {
                     fontFamily: "Ewert",
                   ),
                   colors: [
-                    Colors.purple,
-                    Colors.blue,
-                    Colors.yellow,
-                    Colors.red,
+                    Colors.blue[200],
+                    Colors.blueGrey
                   ],
                   textAlign: TextAlign.start,
                   alignment: AlignmentDirectional.topStart),
