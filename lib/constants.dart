@@ -7,3 +7,8 @@ var titleStyle = TextStyle(
 var subtitleStyle = TextStyle(
     fontSize: 20.0
 );
+var splashScreenTitle = TextStyle(
+  fontWeight: FontWeight.w800,
+  color: Colors.white,
+  fontSize: 35,
+);

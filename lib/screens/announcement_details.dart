@@ -23,7 +23,7 @@ class AnnouncementDetails extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.only(left: 17),
-              child: Text(announcement.body, style: TextStyle(fontSize: 21)),
+              child: Text(announcement.body , style: TextStyle(fontSize: 21)),
             )
           ],
         ),

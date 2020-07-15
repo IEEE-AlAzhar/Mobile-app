@@ -10,7 +10,6 @@ import 'package:ieeeapp/utils/dart_themes_styles.dart';
 import 'package:provider/provider.dart';
 import 'models/themes.dart';
 import 'screens/home_page.dart';
-import 'screens/login_page.dart';
 
 
 DarkThemeProvider themeChangeProvider = new DarkThemeProvider();
@@ -23,7 +22,7 @@ void main() => runApp(ChangeNotifierProvider(
       builder: (BuildContext context, value, Widget child) {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
-          title: "IEEE AL-AZHAR SB APP",
+          title: "IEEE AZHAR",
           theme: Styles.themeData(themeChangeProvider.darkTheme, context),
           initialRoute: SplashScreen.id,
           routes: {

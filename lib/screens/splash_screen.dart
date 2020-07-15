@@ -1,13 +1,11 @@
 import 'dart:async';
-import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:ieeeapp/constants.dart';
 import 'package:ieeeapp/models/themes.dart';
 import 'package:ieeeapp/screens/home_page.dart';
-import 'package:ieeeapp/screens/login_page.dart';
 import 'package:ieeeapp/utils/shared_pref.dart';
-import 'login_page2.dart';
-
+import 'login_page.dart';
 
 class SplashScreen extends StatefulWidget {
   static String id = "SplashScreen";
@@ -24,7 +22,7 @@ class _SplashScreen extends State<SplashScreen> with TickerProviderStateMixin {
 
   void getCurrentAppTheme() async {
     themeChangeProvider.darkTheme =
-    await themeChangeProvider.darkThemePreference.getTheme();
+        await themeChangeProvider.darkThemePreference.getTheme();
   }
 
   @override
@@ -32,14 +30,14 @@ class _SplashScreen extends State<SplashScreen> with TickerProviderStateMixin {
     super.initState();
     getCurrentAppTheme();
     const duration = Duration(milliseconds: 3000);
-    _sharedPrefsHelper.readToken().then((val){
-      if(val !='0' && val != null){
+    _sharedPrefsHelper.readToken().then((val) {
+      if (val != '0' && val != null) {
         Navigator.of(context).pushReplacement(
             MaterialPageRoute(builder: (context) => HomeScreen()));
-      }else{
+      } else {
         Timer(duration, () {
           Navigator.of(context).pushReplacement(
-              MaterialPageRoute(builder: (context) => LoginPagen()));
+              MaterialPageRoute(builder: (context) => LoginPage()));
         });
       }
     });
@@ -49,57 +47,34 @@ class _SplashScreen extends State<SplashScreen> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
-      body: ListView(
-        children:<Widget>[ Container(
+      body: ListView(children: <Widget>[
+        Container(
           decoration: BoxDecoration(
               border: Border.all(
-                color: Colors.white,
-                width: 1,
-              )),
+            color: Colors.white,
+            width: 1,
+          )),
           height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.start,
 //          crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
-              Padding(
-                padding: EdgeInsets.all(
-                  10,
-                ),
-              ),
               Image.asset(
                 'images/ieee_branch.png',
                 height: 400.0,
                 width: 500.0,
               ),
-              ColorizeAnimatedTextKit(
-                  text: ['    IEEE-AZHAR'],
-                  textStyle: TextStyle(
-                    fontSize: 35,
-                    fontFamily: "Ewert",
-                  ),
-                  colors: [
-                    Colors.blue[200],
-                    Colors.blueGrey
-                  ],
-                  textAlign: TextAlign.start,
-                  alignment: AlignmentDirectional.topStart),
-              ColorizeAnimatedTextKit(
-                  text: ['Student Branch'],
-                  textStyle: TextStyle(
-                    fontSize: 35,
-                    fontFamily: "Ewert",
-                  ),
-                  colors: [
-                    Colors.blue[200],
-                    Colors.blueGrey
-                  ],
-                  textAlign: TextAlign.start,
-                  alignment: AlignmentDirectional.topStart),
+              SizedBox(height: 20,),
+              Text(
+                " IEEE Al-Azhar \nStudent Branch",
+                style: splashScreenTitle
+              )
             ],
           ),
-        ),]
-      ),
+        ),
+      ]),
     );
   }
 }
+

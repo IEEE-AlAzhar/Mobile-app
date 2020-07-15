@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:ieeeapp/constants.dart';
 import 'package:ieeeapp/models/themes.dart';
-import 'package:ieeeapp/screens/login_page2.dart';
+import 'package:ieeeapp/screens/login_page.dart';
 import 'package:ieeeapp/screens/profile_page.dart';
 import 'package:ieeeapp/screens/settings_page.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
-import '../screens/login_page.dart';
 import '../utils/networking.dart';
 import '../utils/shared_pref.dart';
 
@@ -147,7 +146,7 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
                       net.ache.clear();
                       Navigator.pushReplacement(context,
                           MaterialPageRoute(builder: (context) {
-                        return LoginPagen();
+                        return LoginPage();
                       }));
                     } else {
                       setState(() {
