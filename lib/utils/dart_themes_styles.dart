@@ -14,10 +14,10 @@ class Styles {
       iconTheme: IconThemeData(
         color: isDarkTheme ? Colors.blueGrey : Colors.blue[300]
       ),
-      indicatorColor: isDarkTheme ? Color(0xff0E1D36) : Color(0xffCBDCF8),
+      indicatorColor: isDarkTheme ? Colors.blueGrey : Color(0xffCBDCF8),
       buttonColor: isDarkTheme ? Color(0xff3B3B3B) : Colors.blue[300],
 
-      hintColor: isDarkTheme ? Color(0xff280C0B) : Colors.blue[100],
+      hintColor: Colors.blue[300],
 
 //      highlightColor: isDarkTheme ? Color(0xff372901) : Color(0xffFCE192),
     //  hoverColor: isDarkTheme ? Color(0xff3A3A3B) : Color(0xff4285F4),

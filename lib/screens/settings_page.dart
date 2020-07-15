@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ieeeapp/main.dart';
@@ -8,14 +9,13 @@ import 'package:ieeeapp/widgets/input_field.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 
-
-
 NetworkHelper nHelper = NetworkHelper();
 
 TextEditingController myController = TextEditingController();
 
 class SettingsScreen extends StatefulWidget {
   static String id = "SettingsScreen";
+
   @override
   _SettingsScreenState createState() => _SettingsScreenState();
 }
@@ -26,7 +26,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
   String id = '';
   String _imagepath;
   String phoneInit;
-  bool _spin =false;
+  bool _spin = false;
   TextEditingController myController = new TextEditingController();
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 
@@ -47,7 +47,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
     });
     sharedPrefsHelper.readPhone().then((value) {
       setState(() {
-        phoneInit =value;
+        phoneInit = value;
         myController.text = value;
       });
     });
@@ -57,6 +57,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
       });
     });
   }
+
   Future getImageFromCamera() async {
     var image = await ImagePicker.pickImage(source: ImageSource.camera);
     setState(() {
@@ -129,9 +130,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       alignment: Alignment.center,
                       child: Padding(
                         padding: EdgeInsets.only(left: 40.0),
-                         child :CircleAvatar(
-                            backgroundColor: Colors.white,
-                           backgroundImage: FileImage(File(_imagepath)),
+                        child: CircleAvatar(
+                          backgroundColor: Colors.white,
+                          backgroundImage: FileImage(File(_imagepath)),
                           radius: 100.0,
                           child: ClipOval(
                             child: SizedBox(
@@ -143,16 +144,17 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                     if (snapshot.hasData) {
                                       return _image != null
                                           ? Image.file(
-                                        _image,
-                                        fit: BoxFit.fill,
-                                      )
+                                              _image,
+                                              fit: BoxFit.fill,
+                                            )
                                           : Image.network(
-                                        snapshot.data,
-                                        fit: BoxFit.fill,
-                                      );
+                                              snapshot.data,
+                                              fit: BoxFit.fill,
+                                            );
                                     } else {
                                       return CircleAvatar(
-                                        backgroundImage: AssetImage("image/profile.png"),
+                                        backgroundImage:
+                                            AssetImage("image/profile.png"),
                                       );
                                     }
                                   }),
@@ -182,47 +184,42 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 Padding(
                   padding: EdgeInsets.all(25.0),
                 ),
-                Column(
-                  children: [
-                    Padding(
-                      padding: EdgeInsets.only(
-                          left: 15.0, top: 40.0, bottom: 10.0, right: 15.0),
-                      child: InputField('Update Phone', myController),
-                    ),
-                  ],
+                Padding(
+                  padding:  EdgeInsets.symmetric(horizontal: 20),
+                  child: InputField('Update Phone number', myController),
                 ),
               ],
             ),
             SizedBox(
               height: 50.0,
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                RaisedButton(
-                  color: themeChangeProvider.darkTheme ? Colors.blueGrey : Colors.blue[300],
-                  elevation: 6.0,
-                  padding: EdgeInsets.only(
-                      left: 25.0, top: 10.0, bottom: 10.0, right: 25.0),
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10.0)),
-                  onPressed: () {
-
-                    if(myController.text.isEmpty){
-                      _scaffoldKey.currentState.showSnackBar(SnackBar(
-                        content: Text('Empty Field'),
-                      ));
-                    }
-                    if(myController.text != phoneInit ){
-                      setState(() {
-                        _spin= true;
-                      });
+            Padding(
+              padding:  EdgeInsets.symmetric(horizontal: 90.0),
+              child: RaisedButton(
+                color: themeChangeProvider.darkTheme
+                    ? Colors.blueGrey
+                    : Colors.blue[300],
+                elevation: 6.0,
+                padding: EdgeInsets.only(
+                    left: 25.0, top: 10.0, bottom: 10.0, right: 25.0),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10.0)),
+                onPressed: () {
+                  if (myController.text.isEmpty) {
+                    _scaffoldKey.currentState.showSnackBar(SnackBar(
+                      content: Text('Empty Field'),
+                    ));
+                  }
+                  if (myController.text != phoneInit) {
+                    setState(() {
+                      _spin = true;
+                    });
                     nHelper
                         .updatePhone(myController.text, id, token)
                         .then((value) {
                       if (value.statusCode == 200) {
                         setState(() {
-                          _spin= false;
+                          _spin = false;
                         });
                         sharedPrefsHelper
                             .savePhone(jsonDecode(value.body)["phone"]);
@@ -231,7 +228,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         ));
                       } else {
                         setState(() {
-                          _spin= false;
+                          _spin = false;
                         });
                         _scaffoldKey.currentState.showSnackBar(SnackBar(
                           content: Text('${value.statusCode}'),
@@ -239,20 +236,20 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         print(value.statusCode);
                       }
                     });
-                    }
-                    if(_image!=null){
-                      setState(() {
-                        _spin= true;
-                      });
-                    nHelper.updateImage(id, token,_image).then((value) {
+                  }
+                  if (_image != null) {
+                    setState(() {
+                      _spin = true;
+                    });
+                    nHelper.updateImage(id, token, _image).then((value) {
                       if (value.statusCode == 200) {
                         setState(() {
-                          _spin= false;
+                          _spin = false;
                         });
                         print("updated photo");
                         print("$value");
-                        String val =value.toString();
-                        String newImage = val.substring(10,val.length-2);
+                        String val = value.toString();
+                        String newImage = val.substring(10, val.length - 2);
                         sharedPrefsHelper.saveImage(newImage);
                         _scaffoldKey.currentState.showSnackBar(SnackBar(
                           content: Text('Updated Image successfully'),
@@ -260,7 +257,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         print(value.statusCode);
                       } else {
                         setState(() {
-                          _spin= false;
+                          _spin = false;
                         });
                         _scaffoldKey.currentState.showSnackBar(SnackBar(
                           content: Text('${value.statusCode}'),
@@ -268,26 +265,32 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         print(value.statusCode);
                       }
                     });
-                    _image =null;
-                    }
-                  },
-                  child: Text(
-                    'Save',
-                    style: TextStyle(
-                      color: Colors.white,
-                    ),
+                    _image = null;
+                  }
+                },
+                child: Text(
+                  'Save',
+                  style: TextStyle(
+                    color: Colors.white,
                   ),
                 ),
-              ],
+              ),
             ),
           ],
         ),
       ),
     );
   }
-  void dispose(){
+
+  void dispose() {
     myController.dispose();
     super.dispose();
   }
 }
 
+/*
+: EdgeInsets.only(
+                          left: 15.0, top: 40.0, bottom: 10.0, right: 15.0),
+
+
+ */

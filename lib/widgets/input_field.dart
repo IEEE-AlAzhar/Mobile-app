@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:ieeeapp/constants.dart';
+import 'package:ieeeapp/main.dart';
 
 class InputField extends StatefulWidget {
 
@@ -16,10 +18,12 @@ class _InputFieldState extends State<InputField> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      cursorColor: Colors.blue[300],
       maxLength: 11,
       keyboardType: TextInputType.phone,
       style: TextStyle(
-        color: Colors.black,
+        color: themeChangeProvider.darkTheme ? Colors.blue[300] : Colors.black,
+        fontSize: 20
       ),
       controller: widget.myController,
       decoration: InputDecoration(
@@ -31,7 +35,7 @@ class _InputFieldState extends State<InputField> {
           borderRadius: BorderRadius.circular(10.0),
         ),
         filled: true,
-        fillColor: Colors.white,
+        fillColor: themeChangeProvider.darkTheme ? primaryColor : Colors.white,
         labelText: widget.label,
         labelStyle: TextStyle(
           color: Colors.blue[300],
@@ -41,7 +45,7 @@ class _InputFieldState extends State<InputField> {
         focusedBorder: OutlineInputBorder(
           borderSide: BorderSide(
             color: Colors.blue[300],
-            width: 2.0,
+            width: 4.0,
           ),
           borderRadius: BorderRadius.circular(10.0),
         ),
