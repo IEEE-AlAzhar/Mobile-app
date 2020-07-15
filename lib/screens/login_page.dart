@@ -95,7 +95,6 @@ class _LoginPageState extends State<LoginPage> {
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
           onPressed: () {
             if (_textEditingController.text.isNotEmpty) {
-              FocusScope.of(context).requestFocus(new FocusNode());
               setState(() {
                 _showSpinner = true;
               });

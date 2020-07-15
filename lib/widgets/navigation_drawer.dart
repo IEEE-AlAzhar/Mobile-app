@@ -20,18 +20,16 @@ class NavigationDrawer extends StatefulWidget {
 
 class _NavigationDrawerState extends State<NavigationDrawer> {
   bool isDark = false;
-
   bool showSpinner = false;
-
   String token;
+
   @override
   void initState() {
-    var value;
 
+    var value;
     shared.readToken().then((value) {
       token = value;
     });
-
     super.initState();
   }
 

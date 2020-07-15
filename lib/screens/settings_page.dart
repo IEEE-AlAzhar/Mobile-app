@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'dart:io';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ieeeapp/main.dart';
@@ -288,9 +287,3 @@ class _SettingsScreenState extends State<SettingsScreen> {
   }
 }
 
-/*
-: EdgeInsets.only(
-                          left: 15.0, top: 40.0, bottom: 10.0, right: 15.0),
-
-
- */
