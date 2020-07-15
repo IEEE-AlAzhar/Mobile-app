@@ -29,15 +29,13 @@ For more commands and details checkout [this](https://medium.com/flutter-communi
 ## Dependencies
 <a name= "Depend"></a>
 1. [Image Picker](https://pub.dev/packages/image_picker)
-2. [Font Awesome Flutter](https://pub.dev/packages/font_awesome_flutter)
-3. [Animated Text Kit](https://pub.dev/packages/animated_text_kit)
-4. [Simple Animations](https://pub.dev/packages/simple_animations)
-5. [Page Transition](https://pub.dev/packages/page_transition)
-6. [HTTP package](https://pub.dev/packages/http)
-7. [Shared Preferences](https://pub.dev/packages/shared_preferences)
+2. [HTTP package](https://pub.dev/packages/http)
+3. [Shared Preferences](https://pub.dev/packages/shared_preferences)
     - For the sake of simplicity, we have used SharedPreferences, but may be in later versions the SQLite API might be used instead.
-8. [Provider Package](https://pub.dev/packages/provider)    
-
+4. [Provider Package](https://pub.dev/packages/provider) 
+5. [Dio](https://pub.dev/packages/dio)
+6. [Intl](https://pub.dev/packages/intl)
+7. [modal progress hud](https://pub.dev/packages/modal_progress_hud)
 ## Structure
 <a name= "Structure"></a>
 The app consists of four major folders:
