@@ -1,11 +1,13 @@
-class Feedback{
+class Feedback {
+  String fedTit;
+  String fedBody;
+  String fedDate;
 
-  final String fedTit;
-  final String fedBody;
-  final String fedDate;
+  Feedback({this.fedTit, this.fedBody, this.fedDate});
 
+  factory Feedback.fromJson(Map<String, dynamic> json) => Feedback(
+      fedTit: json['title'], fedBody: json['body'], fedDate: json['date']);
 
-  Feedback({this.fedTit,this.fedBody,this.fedDate});
-
-
+  Map<String, dynamic> toJson() =>
+      {'title': fedTit, 'body': fedBody, 'date': fedDate};
 }
