@@ -94,7 +94,7 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
                 ),
                 title: Text(
                   themeChange.darkTheme?
-                  'Light mood' : "Night mood",
+                  'Light Mode' : "Night Mode",
                   style: TextStyle(
                     fontSize: 18,
                   ),
