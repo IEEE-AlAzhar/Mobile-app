@@ -19,7 +19,6 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   TextEditingController _textEditingController = TextEditingController();
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
-  final FocusNode _focusNode = FocusNode();
   bool _showSpinner = false;
   bool _obscureText = true;
 
@@ -49,7 +48,7 @@ class _LoginPageState extends State<LoginPage> {
     final iconVisibility = IconButton(
       onPressed: _toggle,
       icon: Image.asset(
-        _obscureText ? 'images/hide.png' : 'images/show.png',
+        _obscureText ? 'images/show.png' : 'images/hide.png',
         color: themeChange.darkTheme ? Colors.blue[300] : Colors.black,
       ),
       iconSize: 10,
