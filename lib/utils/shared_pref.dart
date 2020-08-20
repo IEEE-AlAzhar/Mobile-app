@@ -9,6 +9,11 @@ class SharedPrefsHelper {
 
   SharedPrefsHelper._internal();
 
+  saveFeedback(){
+
+  }
+
+
   saveToken(String token) async {
     final sharedPrefs = await SharedPreferences.getInstance();
     var key = 'token';

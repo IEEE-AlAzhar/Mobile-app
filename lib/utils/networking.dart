@@ -67,6 +67,7 @@ class NetworkHelper {
               fedBody: item["body"],
               fedDate: item["date"]));
         }
+
       }
     }
     return response;
