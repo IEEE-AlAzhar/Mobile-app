@@ -58,6 +58,7 @@ class NetworkHelper {
               achDate: item["date"],
               achCover: item["cover"]));
         }
+        sharedPrefsHelper.saveAchievements(ache);
       }
       if (feed.isNotEmpty) {
         print("okkk2");
@@ -67,7 +68,7 @@ class NetworkHelper {
               fedBody: item["body"],
               fedDate: item["date"]));
         }
-
+       sharedPrefsHelper.saveFeedback(feedBack);
       }
     }
     return response;

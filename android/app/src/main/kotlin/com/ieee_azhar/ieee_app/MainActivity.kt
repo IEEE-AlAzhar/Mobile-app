@@ -1,4 +1,4 @@
-package com.example.ieeeapp
+package com.ieee_azhar.ieee_app
 
 import androidx.annotation.NonNull;
 import io.flutter.embedding.android.FlutterActivity

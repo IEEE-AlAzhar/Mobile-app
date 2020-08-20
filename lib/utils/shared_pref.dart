@@ -1,3 +1,7 @@
+import 'dart:convert';
+
+import 'package:ieeeapp/models/achievement.dart';
+import 'package:ieeeapp/models/feedback.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SharedPrefsHelper {
@@ -9,10 +13,35 @@ class SharedPrefsHelper {
 
   SharedPrefsHelper._internal();
 
-  saveFeedback(){
-
+  saveAchievements(List<Achievements> list)async{
+    final sharedPrefs = await SharedPreferences.getInstance();
+    final String entriesJson = json.encode(list.map((entry) => entry.toJson()).toList());
+    sharedPrefs.setString('ach', entriesJson);
   }
 
+  Future<List<Achievements>> readAchievements()async{
+    final sharedPrefs = await SharedPreferences.getInstance();
+    final String savedEntriesJson = sharedPrefs.getString('ach');
+    final List<dynamic> entriesDeserialized = json.decode(savedEntriesJson);
+    List<Achievements> deserializedList = entriesDeserialized.map((json) =>Achievements.fromJson(json)).toList();
+    return deserializedList;
+  }
+
+
+
+  saveFeedback(List<Feedback> list)async{
+    final sharedPrefs = await SharedPreferences.getInstance();
+    final String entriesJson = json.encode(list.map((entry) => entry.toJson()).toList());
+    sharedPrefs.setString('feedback', entriesJson);
+  }
+
+  Future<List<Feedback>> readFeedback()async{
+    final sharedPrefs = await SharedPreferences.getInstance();
+    final String savedEntriesJson = sharedPrefs.getString('feedback');
+    final List<dynamic> entriesDeserialized = json.decode(savedEntriesJson);
+    List<Feedback> deserializedList = entriesDeserialized.map((json) =>Feedback.fromJson(json)).toList();
+    return deserializedList;
+  }
 
   saveToken(String token) async {
     final sharedPrefs = await SharedPreferences.getInstance();
